@@ -1,49 +1,70 @@
+# 工作流名称：部署文档到 GitHub Pages
 name: Deploy Documentation to GitHub Pages
 
+# 触发条件
 on:
+  # 当代码推送到仓库时触发
   push:
     branches:
-      - main
+      - main  # 仅在 main 分支有推送时触发
     paths:
-      - 'docs/**'
+      - 'docs/**'  # 仅当 docs 目录下的文件发生变化时触发
+  # 允许在 GitHub Actions 页面手动触发工作流
   workflow_dispatch:
 
+# 权限配置
 permissions:
-  contents: write
+  contents: write  # 授予写入仓库内容的权限（部署到 gh-pages 分支需要）
 
+# 并发控制：确保同一时间只有一个部署任务运行
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  group: "pages"  # 并发组名称
+  cancel-in-progress: false  # 不取消正在进行的任务
 
+# 定义工作任务
 jobs:
   deploy:
+    # 运行环境：使用最新版本的 Ubuntu
     runs-on: ubuntu-latest
 
+    # 任务步骤
     steps:
+      # 步骤 1: 检出代码
+      # 从仓库中拉取代码到工作流运行环境
       - name: Checkout
         uses: actions/checkout@v4
 
+      # 步骤 2: 设置 pnpm 包管理器
+      # pnpm 是一个高效的 Node.js 包管理工具
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 10.21.0
+          version: 10.21.0  # 指定 pnpm 版本
 
+      # 步骤 3: 设置 Node.js 环境
+      # 配置 Node.js 运行时环境
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'pnpm'
+          node-version: '20'  # 使用 Node.js 20 版本
+          cache: 'pnpm'  # 启用 pnpm 缓存以加速依赖安装
 
+      # 步骤 4: 安装项目依赖
+      # --frozen-lockfile 确保使用锁文件中的精确版本，不更新依赖
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # 步骤 5: 构建文档
+      # 运行构建命令生成静态文档文件
       - name: Build documentation
         run: pnpm run build:docs
 
+      # 步骤 6: 部署到 GitHub Pages
+      # 将构建好的文档部署到 gh-pages 分支
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/docs-portal
-          publish_branch: gh-pages
-          force_orphan: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # 使用 GitHub 自动提供的令牌进行认证
+          publish_dir: ./docs/docs-portal  # 要发布的目录路径
+          publish_branch: gh-pages  # 部署到 gh-pages 分支
+          force_orphan: true  # 创建孤立分支（不保留历史记录，保持分支干净）

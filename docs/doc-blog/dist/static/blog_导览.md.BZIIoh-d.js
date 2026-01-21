@@ -1,1 +1,0 @@
-import{_ as t,c as a,o,j as r}from"./chunks/framework.BMfMSJdT.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"blog/导览.md","filePath":"blog/导览.md"}'),s={name:"blog/导览.md"};function n(l,e,c,p,d,_){return o(),a("div",null,[...e[0]||(e[0]=[r("p",null,"1111",-1)])])}const f=t(s,[["render",n]]);export{m as __pageData,f as default};
