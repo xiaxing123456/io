@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress';
 import { nav } from './nav-config.mjs';
 import { sidebarPlugin } from './sidebar-config/index';
 
-const base = `/${process.env.VITE_DOCS_NAME}/${process.env.VITE_DOCS_VERSION}`;
+const base = `/io/${process.env.VITE_DOCS_NAME}/${process.env.VITE_DOCS_VERSION}`;
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
