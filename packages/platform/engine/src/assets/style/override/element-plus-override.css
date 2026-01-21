@@ -1,0 +1,12 @@
+.el-button {
+    font-size: var(--plt-basic-font-size-common);
+    font-weight: var(--plt-basic-font-weight-normal);
+    min-width: var(--plt-btn-min-width);
+    height: var(--plt-btn-height);
+    line-height: 1;
+    border-radius: var(--plt-basic-radius-common);
+}
+
+.el-button.el-button--default {
+    background: var(--plt-btn-default-background-color);
+}

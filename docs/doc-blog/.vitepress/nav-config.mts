@@ -1,0 +1,6 @@
+export const nav = () => {
+    return [
+        { text: '首页', link: '/' },
+        { text: '博客', link: '/blog/导览' },
+    ];
+};

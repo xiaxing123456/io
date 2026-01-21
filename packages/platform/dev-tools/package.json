@@ -1,0 +1,22 @@
+{
+    "name": "@io-platform/dev-tools",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/cjs/index.js",
+    "module": "dist/ems/index.js",
+    "types": "dist/types/index.d.ts",
+    "scripts": {
+        "build": "tsc -p tsconfig.json && tsc -p tsconfig.cjs.json"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "packageManager": "pnpm@10.21.0",
+    "dependencies": {
+        "fs-extra": "11.3.0"
+    },
+    "devDependencies": {
+        "@types/fs-extra": "11.0.4",
+        "fast-glob": "3.3.3"
+    }
+}

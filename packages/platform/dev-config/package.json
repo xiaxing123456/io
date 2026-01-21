@@ -1,0 +1,9 @@
+{
+    "name": "@io-platform/dev-config",
+    "version": "1.0.0",
+    "exports": {
+        "./tsconfig/tsconfig": "./tsconfig/tsconfig.json"
+    },
+    "dependencies": {},
+    "devDependencies": {}
+}

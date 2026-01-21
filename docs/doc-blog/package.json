@@ -1,0 +1,15 @@
+{
+    "name": "doc-blog",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "dotenv -e .env.development vitepress dev",
+        "build": "dotenv -e .env.production vitepress build && node script/traverse-derectory.mjs",
+        "preview": "pnpm run build && dotenv -e .env.production vitepress preview"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "packageManager": "pnpm@10.21.0"
+}

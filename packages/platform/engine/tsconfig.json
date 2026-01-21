@@ -1,0 +1,21 @@
+{
+    "extends": "@io-platform/dev-config/tsconfig/tsconfig",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@engine/*": ["src/*"],
+            "@locales": ["../../../node_modules/@io-platform/locales/src"],
+            "@core-composables/*": ["../../../node_modules/@io-platform/core-composables/src/*"]
+        },
+        "types": ["vite/client"]
+    },
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.d.ts",
+        "src/**/*.tsx",
+        "src/**/*.vue",
+        "tests/**/*.ts",
+        "tests/**/*.tsx"
+    ],
+    "exclude": ["node_modules"]
+}

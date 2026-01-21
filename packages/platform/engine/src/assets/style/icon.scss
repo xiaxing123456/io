@@ -1,0 +1,43 @@
+@import './iconfont/iconfont.css';
+// 尽量使用原生css, 提升编译速度
+
+[class*='icon-plt'] {
+    font-family: 'iconfont' !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: var(--plt-basic-icon-size-common);
+}
+
+/** element-plus icon */
+
+// close icon
+.el-date-editor.el-date-editor--daterange .el-input__icon.el-range__close-icon,
+.el-select .select-trigger .el-input .el-select__caret.el-icon-circle-close,
+.el-input.el-date-editor .el-icon-circle-close,
+.el-input .el-icon-circle-close.el-input__clear {
+    font-family: 'iconfont' !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: var(--plt-basic-font-size-common);
+    margin-right: var(--plt-basic-margin-xs);
+}
+
+// close icon
+.el-date-editor.el-date-editor--daterange
+    .el-input__icon.el-range__close-icon.el-icon-circle-close::before,
+.el-select .select-trigger .el-input .el-select__caret.el-icon-circle-close::before,
+.el-input.el-date-editor .el-icon-circle-close::before,
+.el-input .el-icon-circle-close.el-input__clear::before {
+    content: '\e64a' !important;
+}
+
+.el-date-editor.el-date-editor--date .el-icon-date:before {
+    content: '\e78e' !important;
+}
+
+// search icon
+.el-button .el-icon-search {
+    font-size: var(--plt-basic-icon-size-common);
+}

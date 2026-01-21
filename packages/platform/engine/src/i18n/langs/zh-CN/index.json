@@ -1,0 +1,12 @@
+{
+    "login": {
+        "welcomeBack": "欢迎回来",
+        "subtitle": "立即登录以管理您的游戏项目和教程",
+        "usernameLabel": "用户名/手机号",
+        "usernamePlaceholder": "请输入您的账户",
+        "passwordLabel": "密码",
+        "passwordPlaceholder": "请输入密码",
+        "loginButton": "立即登录",
+        "thirdPartyLogin": "第三方快捷登录"
+    }
+}

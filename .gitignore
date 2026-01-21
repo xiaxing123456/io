@@ -1,0 +1,9 @@
+# Dependencies
+node_modules/
+
+# IDE
+.vscode/
+
+# Docs cache
+docs/.vitepress/cache
+docs/.vitepress/dist

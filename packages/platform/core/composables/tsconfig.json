@@ -1,0 +1,8 @@
+{
+    "extends": "@io-platform/dev-config/tsconfig/tsconfig",
+    "compilerOptions": {
+        "types": ["vite/client"]
+    },
+    "include": ["src"],
+    "exclude": ["node_modules"]
+}

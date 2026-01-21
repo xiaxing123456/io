@@ -1,0 +1,10 @@
+{
+    "name": "@io-platform/ui",
+    "version": "1.0.0",
+    "main": "src/index.ts",
+    "scripts": {},
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "packageManager": "pnpm@10.21.0"
+}

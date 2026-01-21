@@ -1,0 +1,18 @@
+{
+    "extends": "@io-platform/dev-config/tsconfig/tsconfig",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@engine/*": ["../../../node_modules/@io-platform/config-engine/src/*"]
+        },
+        "types": ["vite/client"]
+    },
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.d.ts",
+        "src/**/*.tsx",
+        "src/**/*.vue",
+        "../../../node_modules/@io-platform/common/src/types/**/*.d.ts"
+    ],
+    "exclude": ["node_modules"]
+}

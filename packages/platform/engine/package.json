@@ -1,0 +1,22 @@
+{
+    "name": "@io-platform/engine",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "engines": {
+        "node": "^20.19.0 || >=22.12.0"
+    },
+    "scripts": {
+        "dev": "cross-env NODE_ENV=development vite",
+        "build": "run-p type-check \"build-only {@}\" --",
+        "preview": "vite preview",
+        "build-only": "vite build",
+        "type-check": "vue-tsc --build",
+        "lint": "eslint . --fix --cache",
+        "format": "prettier --write --experimental-cli src/"
+    },
+    "devDependencies": {
+        "@tailwindcss/postcss": "^4.1.18",
+        "autoprefixer": "^10.4.23"
+    }
+}

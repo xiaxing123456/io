@@ -1,0 +1,5 @@
+packages:
+    - 'packages/*'
+    - 'packages/platform/*'
+    - 'packages/platform/core/*'
+    - 'docs/*'
