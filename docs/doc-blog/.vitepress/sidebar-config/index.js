@@ -1,4 +1,3 @@
-import {sidebarPlugin} from './plugin.mts';
+import sideberPlugin from './plugin.mts';
 
-
-export {sidebarPlugin };
+export default sideberPlugin;

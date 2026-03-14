@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress';
 import { nav } from './nav-config.mjs';
-import { sidebarPlugin } from './sidebar-config/index';
+import sideberPlugin from './sidebar-config/index';
 
 const base = `/io/${process.env.VITE_DOCS_NAME}/${process.env.VITE_DOCS_VERSION}`;
 
@@ -99,7 +99,15 @@ export default defineConfig({
         sidebar: {
             'blog/': {
                 base: '/blog/',
-                items: sidebarPlugin(),
+                items: sideberPlugin.sidebarPlugin(),
+            },
+            'doc-menu/mysql/': {
+                base: '/doc-menu/mysql/',
+                items: sideberPlugin.mysqlPlugin(),
+            },
+            'doc-menu/service/': {
+                base: '/doc-menu/service/',
+                items: sideberPlugin.servicePlugin(),
             },
         },
 
