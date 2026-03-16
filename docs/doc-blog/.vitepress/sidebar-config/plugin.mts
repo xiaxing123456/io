@@ -61,8 +61,51 @@ const servicePlugin = () => {
     ];
 };
 
+/** nestjs侧边栏 */
+const nestjsPlugin = () => {
+    return [
+        {
+            text: 'NestJS',
+            collapsed: false,
+            items: [
+                {
+                    text: 'NestJS 快速入门',
+                    link: '/nestjs-quickstart',
+                },
+                {
+                    text: 'SWC 加速编译',
+                    link: '/nestjs-swc',
+                },
+                {
+                    text: '日志系统（Winston）',
+                    link: '/nestjs-logger',
+                },
+                {
+                    text: '集成 Prisma 模块',
+                    link: '/prisma-nestjs-module',
+                },
+            ],
+        },
+        {
+            text: 'Prisma 数据库',
+            collapsed: false,
+            items: [
+                {
+                    text: 'PostgreSQL',
+                    link: '/prisma-postgresql',
+                },
+                {
+                    text: 'MySQL',
+                    link: '/prisma-mysql',
+                },
+            ],
+        },
+    ];
+};
+
 export default {
     sidebarPlugin,
     mysqlPlugin,
     servicePlugin,
+    nestjsPlugin,
 };
