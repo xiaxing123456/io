@@ -81,6 +81,10 @@ const nestjsPlugin = () => {
                     link: '/nestjs-logger',
                 },
                 {
+                    text: 'CLI 生成命令',
+                    link: '/nestjs-cli-generate',
+                },
+                {
                     text: '集成 Prisma 模块',
                     link: '/prisma-nestjs-module',
                 },
@@ -97,6 +101,10 @@ const nestjsPlugin = () => {
                 {
                     text: 'MySQL',
                     link: '/prisma-mysql',
+                },
+                {
+                    text: 'Data Model 建表指南',
+                    link: '/prisma-data-model',
                 },
             ],
         },
