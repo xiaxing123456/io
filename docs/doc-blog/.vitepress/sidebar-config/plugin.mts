@@ -25,6 +25,16 @@ const servicePlugin = () => {
             link: '/服务端相关理论',
         },
         {
+            text: 'Linux',
+            collapsed: false,
+            items: [
+                {
+                    text: 'Linux 常用命令',
+                    link: '/linux/linux-commands',
+                },
+            ],
+        },
+        {
             text: 'Docker',
             collapsed: false,
             items: [
@@ -111,9 +121,36 @@ const nestjsPlugin = () => {
     ];
 };
 
+/** java侧边栏 */
+const javaPlugin = () => {
+    return [
+        {
+            text: 'Java',
+            collapsed: false,
+            items: [
+                {
+                    text: 'Java 快速入门',
+                    link: '/java-quickstart',
+                },
+            ],
+        },
+        {
+            text: 'Spring',
+            collapsed: false,
+            items: [
+                {
+                    text: 'MyBatis 教程',
+                    link: '/mybatis',
+                },
+            ],
+        },
+    ];
+};
+
 export default {
     sidebarPlugin,
     mysqlPlugin,
     servicePlugin,
     nestjsPlugin,
+    javaPlugin,
 };

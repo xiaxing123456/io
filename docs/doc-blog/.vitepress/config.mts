@@ -113,6 +113,10 @@ export default defineConfig({
                 base: '/doc-menu/nestjs/',
                 items: sideberPlugin.nestjsPlugin(),
             },
+            'doc-menu/java/': {
+                base: '/doc-menu/java/',
+                items: sideberPlugin.javaPlugin(),
+            },
         },
 
         socialLinks: [{ icon: 'github', link: 'https://github.com/vuejs/vitepress' }],
