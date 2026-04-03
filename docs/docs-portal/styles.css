@@ -130,7 +130,7 @@ body {
 /* ── Hero Section ──────────────────────────────── */
 .hero {
     text-align: center;
-    padding: 128px 0 48px;
+    padding: 120px 0 40px;
 }
 
 .hero-badge {
@@ -228,58 +228,157 @@ body {
 .hero-desc {
     font-size: 1.1rem;
     color: var(--text-2);
-    margin-bottom: 36px;
+    margin-bottom: 0;
 }
 
-/* ── Search Bar ────────────────────────────────── */
-.search-bar {
+/* ── Code Window Illustration ──────────────────── */
+.hero-visual {
+    max-width: 600px;
+    margin: 48px auto 56px;
+}
+
+.code-window {
+    background: rgba(8, 12, 24, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow:
+        0 24px 80px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.03),
+        0 0 60px rgba(34, 211, 238, 0.04);
+}
+
+.code-titlebar {
     display: flex;
     align-items: center;
-    gap: 14px;
-    max-width: 460px;
-    margin: 0 auto 24px;
-    padding: 13px 18px;
+    gap: 8px;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.code-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--dot-c);
+    opacity: 0.8;
+}
+
+.code-titlebar-text {
+    margin-left: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-3);
+}
+
+.code-body {
+    padding: 20px 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    line-height: 1.85;
+    color: var(--text-2);
+    overflow-x: auto;
+    margin: 0;
+}
+
+.ln {
+    color: rgba(255, 255, 255, 0.12);
+    user-select: none;
+    display: inline-block;
+    width: 2ch;
+    text-align: right;
+    margin-right: 16px;
+}
+
+.c-prompt {
+    color: var(--cyan);
+}
+
+.c-cmd {
+    color: var(--text-1);
+    font-weight: 500;
+}
+
+.c-ok {
+    color: #28c840;
+}
+
+.c-info {
+    color: var(--indigo);
+}
+
+.c-path {
+    color: var(--violet);
+}
+
+.c-link {
+    color: var(--cyan);
+    text-decoration: underline;
+    text-decoration-color: rgba(34, 211, 238, 0.3);
+    text-underline-offset: 2px;
+}
+
+/* ── Features Section ──────────────────────────── */
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 56px;
+}
+
+.feature-card {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 12px;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
-    cursor: pointer;
+    padding: 24px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: border-color 0.3s, background 0.3s, transform 0.3s var(--ease);
 }
 
-.search-bar:hover {
+.feature-card:hover {
     border-color: var(--border-hover);
     background: var(--surface-hover);
-    box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.05), 0 8px 24px rgba(0, 0, 0, 0.25);
+    transform: translateY(-2px);
 }
 
-.search-bar svg {
-    color: var(--text-3);
-    flex-shrink: 0;
+.feature-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    margin-bottom: 16px;
 }
 
-.search-bar input {
-    background: none;
-    border: none;
-    outline: none;
+.feature-icon--cyan {
+    background: rgba(34, 211, 238, 0.08);
+    color: var(--cyan);
+}
+
+.feature-icon--indigo {
+    background: rgba(129, 140, 248, 0.08);
+    color: var(--indigo);
+}
+
+.feature-icon--violet {
+    background: rgba(167, 139, 250, 0.08);
+    color: var(--violet);
+}
+
+.feature-card h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+}
+
+.feature-card p {
+    font-size: 0.82rem;
     color: var(--text-2);
-    font-family: inherit;
-    font-size: 0.92rem;
-    flex: 1;
-    cursor: pointer;
-}
-
-.search-bar kbd {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    font-weight: 500;
-    color: var(--text-3);
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 3px 8px;
-    border-radius: 5px;
-    white-space: nowrap;
+    line-height: 1.55;
 }
 
 /* ── Filter Navigation ─────────────────────────── */
@@ -367,17 +466,43 @@ body {
     z-index: 1;
     background: var(--surface);
     border-radius: calc(var(--radius) - 1px);
-    padding: 28px;
     height: 100%;
     display: flex;
     flex-direction: column;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     transition: background 0.3s;
+    overflow: hidden;
 }
 
 .doc-card:hover .card-inner {
     background: var(--surface-hover);
+}
+
+/* Card banner illustration */
+.card-banner {
+    height: 140px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-banner-svg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+}
+
+/* Card body */
+.card-body {
+    padding: 24px 28px 28px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 /* Card icon */
@@ -391,7 +516,7 @@ body {
     background: linear-gradient(135deg, rgba(34, 211, 238, 0.08), rgba(129, 140, 248, 0.06));
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 /* Card typography */
@@ -497,7 +622,21 @@ body {
 /* ── Responsive ────────────────────────────────── */
 @media (max-width: 768px) {
     .hero {
-        padding: 88px 0 36px;
+        padding: 88px 0 32px;
+    }
+
+    .hero-visual {
+        margin: 36px auto 40px;
+    }
+
+    .code-body {
+        font-size: 0.72rem;
+        padding: 16px 14px;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+        gap: 12px;
     }
 
     .card-grid {
@@ -534,10 +673,6 @@ body {
 @media (max-width: 480px) {
     .page {
         padding: 0 16px;
-    }
-
-    .search-bar {
-        padding: 11px 14px;
     }
 
     .filter-btn {

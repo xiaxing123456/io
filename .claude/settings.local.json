@@ -8,7 +8,14 @@
       "mcp__chrome-devtools__evaluate_script",
       "mcp__chrome-devtools__hover",
       "mcp__chrome-devtools__take_screenshot",
-      "mcp__chrome-devtools__emulate"
+      "mcp__chrome-devtools__emulate",
+      "mcp__chrome-devtools__list_console_messages",
+      "WebSearch",
+      "Bash(npx -y @anthropic-ai/sdk@latest)",
+      "Bash(npm search:*)",
+      "Bash(claude mcp:*)",
+      "Read(//c/Users/xing.xia/.claude/**)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\('mcpServers',{}\\), indent=2\\)\\)\")"
     ]
   }
 }
