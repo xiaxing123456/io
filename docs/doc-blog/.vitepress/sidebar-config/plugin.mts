@@ -54,6 +54,10 @@ const servicePlugin = () => {
                             text: 'MySQL',
                             link: '/docker/compose-services/mysql',
                         },
+                        {
+                            text: 'Redis',
+                            link: '/docker/compose-services/redis',
+                        },
                     ],
                 },
                 {

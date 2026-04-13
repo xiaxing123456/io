@@ -95,7 +95,7 @@ long_query_time=2
 修改配置后重启容器生效：
 
 ```bash
-docker compose restart db
+docker restart my_mysql
 ```
 
 ## 四、常用操作
@@ -103,23 +103,23 @@ docker compose restart db
 ### 进入 MySQL 命令行
 
 ```bash
-docker compose exec db mysql -uroot -p
+docker exec -it my_mysql mysql -uroot -p
 ```
 
 ### 导入 SQL 文件
 
 ```bash
-docker compose exec -T db mysql -uroot -pyour_password mydb < backup.sql
+docker exec -i my_mysql mysql -uroot -pyour_password mydb < backup.sql
 ```
 
 ### 导出数据库备份
 
 ```bash
-docker compose exec db mysqldump -uroot -pyour_password mydb > backup.sql
+docker exec my_mysql mysqldump -uroot -pyour_password mydb > backup.sql
 ```
 
 ### 查看 MySQL 日志
 
 ```bash
-docker compose logs -f db
+docker logs -f my_mysql
 ```
