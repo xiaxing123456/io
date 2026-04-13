@@ -21,7 +21,7 @@ Docker 官方支持以下 Linux 发行版：
 - Fedora
 
 ::: tip 国产发行版
-OpenCloudOS、Anolis OS、龙蜥等国产发行版与 RHEL/CentOS 兼容，使用 CentOS 仓库安装即可。
+OpenCloudOS、Anolis OS、龙蜥等国产发行版与 RHEL/CentOS 兼容，使用 CentOS 仓库安装即可。openEuler 需要特殊处理，详见 [1.4 openEuler 安装](#_1-4-openeuler-安装-踩坑记录)。
 :::
 
 ### 1.2 使用官方脚本安装（适合 Ubuntu/Debian）
@@ -58,7 +58,118 @@ sudo systemctl enable docker
 docker --version
 ```
 
-### 1.4 配置镜像加速（国内服务器必做）
+### 1.4 openEuler 安装（踩坑记录）
+
+openEuler 22.03 LTS SP4 与 CentOS 8 内核兼容，但安装 Docker 时有几个坑需要注意。
+
+#### 问题一：`yum-utils` 包不存在
+
+```bash
+sudo yum install -y yum-utils
+# Error: Unable to find a match: yum-utils
+```
+
+**原因：** openEuler 使用 `dnf` 作为包管理器，`yum-utils` 在 openEuler 中叫 `dnf-plugins-core`。
+
+**解决：**
+
+```bash
+sudo dnf install -y dnf-plugins-core
+```
+
+#### 问题二：Docker CE 仓库 404
+
+```bash
+sudo dnf config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+sudo dnf install -y docker-ce
+# Error: 404 for https://mirrors.aliyun.com/docker-ce/linux/centos/22.03LTS_SP4/x86_64/stable/repodata/repomd.xml
+```
+
+**原因：** `config-manager --add-repo` 会自动检测系统版本号，openEuler 的版本号是 `22.03LTS_SP4`，阿里云镜像站不存在这个路径，只有 `centos/7`、`centos/8` 等。
+
+**解决：** 不要用 `config-manager`，手动创建 repo 文件，强制指向 `centos/8`：
+
+```bash
+# 删掉自动生成的错误 repo
+sudo rm -f /etc/yum.repos.d/docker-ce.repo
+
+# 手动写入正确的 repo
+sudo tee /etc/yum.repos.d/docker-ce.repo <<'EOF'
+[docker-ce-stable]
+name=Docker CE Stable
+baseurl=https://mirrors.aliyun.com/docker-ce/linux/centos/8/x86_64/stable/
+enabled=1
+gpgcheck=1
+gpgkey=https://mirrors.aliyun.com/docker-ce/linux/centos/gpg
+EOF
+
+# 刷新缓存并安装
+sudo dnf makecache
+sudo dnf install -y docker-ce docker-ce-cli containerd.io \
+  docker-buildx-plugin docker-compose-plugin
+```
+
+#### 问题三：`docker pull` 超时
+
+```bash
+docker pull mysql:8.3.5
+# Error: dial tcp 52.58.1.161:443: i/o timeout
+```
+
+**原因：** 即使配置了镜像加速，部分镜像源可能已失效或不稳定，仍然回源到 Docker Hub 导致超时。
+
+**解决：** 更换为当前可用的镜像源：
+
+```bash
+sudo tee /etc/docker/daemon.json <<'EOF'
+{
+  "registry-mirrors": [
+    "https://docker.1ms.run",
+    "https://docker.xuanyuan.me"
+  ]
+}
+EOF
+
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+
+::: tip 镜像源时效性
+国内 Docker 镜像源经常变动，如果上述镜像源失效，可搜索"Docker 国内镜像源"获取最新可用地址。也可以考虑使用代理方式拉取镜像。
+:::
+
+#### openEuler 完整安装流程
+
+```bash
+# 1. 安装依赖
+sudo dnf install -y dnf-plugins-core
+
+# 2. 手动创建 Docker 仓库（指向 centos/8）
+sudo tee /etc/yum.repos.d/docker-ce.repo <<'EOF'
+[docker-ce-stable]
+name=Docker CE Stable
+baseurl=https://mirrors.aliyun.com/docker-ce/linux/centos/8/x86_64/stable/
+enabled=1
+gpgcheck=1
+gpgkey=https://mirrors.aliyun.com/docker-ce/linux/centos/gpg
+EOF
+
+# 3. 安装 Docker
+sudo dnf makecache
+sudo dnf install -y docker-ce docker-ce-cli containerd.io \
+  docker-buildx-plugin docker-compose-plugin
+
+# 4. 启动并设置开机自启
+sudo systemctl start docker
+sudo systemctl enable docker
+
+# 5. 验证
+docker --version
+```
+
+---
+
+### 1.5 配置镜像加速（国内服务器必做）
 
 Docker Hub 在国内访问不稳定，需配置国内镜像源：
 
@@ -81,7 +192,7 @@ sudo systemctl restart docker
 如果你使用腾讯云 CVM，`mirror.ccs.tencentyun.com` 走内网流量，速度最快，推荐优先使用。
 :::
 
-### 1.5 非 root 用户免 sudo 运行 Docker
+### 1.6 非 root 用户免 sudo 运行 Docker
 
 ```bash
 # 将当前用户加入 docker 组
