@@ -47,24 +47,40 @@ const servicePlugin = () => {
                     link: '/docker/docker-compose',
                 },
                 {
+                    text: 'Compose 服务集成',
+                    collapsed: false,
+                    items: [
+                        {
+                            text: 'MySQL',
+                            link: '/docker/compose-services/mysql',
+                        },
+                    ],
+                },
+                {
                     text: 'Docker 常用命令',
                     link: '/docker/docker-commands',
                 },
                 {
-                    text: 'Portainer 介绍',
-                    link: '/docker/portainer-intro',
-                },
-                {
-                    text: '安装 Portainer',
-                    link: '/docker/portainer-install',
-                },
-                {
-                    text: 'Portainer 使用手册',
-                    link: '/docker/portainer-manual',
-                },
-                {
-                    text: 'Portainer 安装 MySQL',
-                    link: '/docker/portainer-mysql',
+                    text: 'Portainer',
+                    collapsed: false,
+                    items: [
+                        {
+                            text: 'Portainer 介绍',
+                            link: '/docker/portainer/portainer-intro',
+                        },
+                        {
+                            text: '安装 Portainer',
+                            link: '/docker/portainer/portainer-install',
+                        },
+                        {
+                            text: 'Portainer 使用手册',
+                            link: '/docker/portainer/portainer-manual',
+                        },
+                        {
+                            text: 'Portainer 安装 MySQL',
+                            link: '/docker/portainer/portainer-mysql',
+                        },
+                    ],
                 },
             ],
         },
