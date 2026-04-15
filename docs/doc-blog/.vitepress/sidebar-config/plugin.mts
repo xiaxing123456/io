@@ -58,6 +58,10 @@ const servicePlugin = () => {
                             text: 'Redis',
                             link: '/docker/compose-services/redis',
                         },
+                        {
+                            text: 'Nacos',
+                            link: '/docker/compose-services/nacos',
+                        },
                     ],
                 },
                 {
