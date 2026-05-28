@@ -193,10 +193,41 @@ const javaPlugin = () => {
     ];
 };
 
+/** 项目侧边栏 */
+const projectPlugin = () => {
+    return [
+        {
+            text: '尚品甄选',
+            collapsed: false,
+            items: [
+                { text: '01 项目概述', link: '/shangpin-selection/01 尚品甄选-项目概述' },
+                { text: '02 后台系统-搭建环境', link: '/shangpin-selection/02 尚品甄选-后台系统-搭建环境' },
+                { text: '03 后台系统-用户登录', link: '/shangpin-selection/03 尚品甄选-后台系统-用户登录' },
+                { text: '04 权限管理之角色管理', link: '/shangpin-selection/04 尚品甄选-后台系统-权限管理之角色管理' },
+                { text: '05 权限管理之用户管理', link: '/shangpin-selection/05 尚品甄选-后台系统-权限管理之用户管理' },
+                { text: '06 权限管理之菜单管理', link: '/shangpin-selection/06 尚品甄选-后台系统-权限管理之菜单管理' },
+                { text: '07 分类和品牌管理', link: '/shangpin-selection/07 尚品甄选-后台系统-分类和品牌管理' },
+                { text: '08 分类品牌和规格管理', link: '/shangpin-selection/08 尚品甄选-后台系统-分类品牌和规格管理' },
+                { text: '09 商品和订单管理', link: '/shangpin-selection/09 尚品甄选-后台系统-商品和订单管理' },
+                { text: '10 记录日志功能', link: '/shangpin-selection/10 尚品甄选-后台系统-记录日志功能' },
+                { text: '11 前台系统-搭建环境', link: '/shangpin-selection/11 尚品甄选-前台系统-搭建环境' },
+                { text: '12 首页数据和商品列表', link: '/shangpin-selection/12 尚品甄选-前台系统-首页数据和商品列表' },
+                { text: '13 商品详情和注册登录', link: '/shangpin-selection/13 尚品甄选-前台系统-商品详情和注册登录' },
+                { text: '14 购物车和订单结算', link: '/shangpin-selection/14 尚品甄选-前台系统-购物车和订单结算' },
+                { text: '15 下单和订单查询', link: '/shangpin-selection/15 尚品甄选-前台系统-下单和订单查询' },
+                { text: '16 订单支付功能', link: '/shangpin-selection/16 尚品甄选-前台系统-订单支付功能' },
+                { text: '17 项目部署', link: '/shangpin-selection/17 尚品甄选-项目部署（docker部署）' },
+                { text: '18 项目总结', link: '/shangpin-selection/18 尚品甄选-项目总结' },
+            ],
+        },
+    ];
+};
+
 export default {
     sidebarPlugin,
     mysqlPlugin,
     servicePlugin,
     nestjsPlugin,
     javaPlugin,
+    projectPlugin,
 };

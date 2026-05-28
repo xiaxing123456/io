@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as c}from"./chunks/framework.DIUUAxmi.js";const p=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"doc-menu/service/服务端相关理论.md","filePath":"doc-menu/service/服务端相关理论.md"}'),r={name:"doc-menu/service/服务端相关理论.md"};function a(o,s,n,_,d,i){return c(),t("div")}const f=e(r,[["render",a]]);export{p as __pageData,f as default};

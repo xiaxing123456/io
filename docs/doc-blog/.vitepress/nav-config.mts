@@ -6,5 +6,11 @@ export const nav = () => {
         { text: '服务端', link: '/doc-menu/service/服务端相关理论' },
         { text: 'Nestjs', link: '/doc-menu/nestjs/nestjs-quickstart' },
         { text: 'Java', link: '/doc-menu/java/java-quickstart' },
+        {
+            text: '项目',
+            items: [
+                { text: '尚品甄选', link: '/doc-menu/project/shangpin-selection/01 尚品甄选-项目概述' },
+            ],
+        },
     ];
 };

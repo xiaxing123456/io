@@ -117,6 +117,10 @@ export default defineConfig({
                 base: '/doc-menu/java/',
                 items: sideberPlugin.javaPlugin(),
             },
+            'doc-menu/project/': {
+                base: '/doc-menu/project/',
+                items: sideberPlugin.projectPlugin(),
+            },
         },
 
         socialLinks: [{ icon: 'github', link: 'https://github.com/vuejs/vitepress' }],
