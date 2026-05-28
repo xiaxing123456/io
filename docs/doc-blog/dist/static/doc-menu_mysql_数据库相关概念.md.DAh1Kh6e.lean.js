@@ -1,1 +1,0 @@
-import{_ as e,c as t,o as a}from"./chunks/framework.DIUUAxmi.js";const i=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"doc-menu/mysql/数据库相关概念.md","filePath":"doc-menu/mysql/数据库相关概念.md"}'),o={name:"doc-menu/mysql/数据库相关概念.md"};function s(c,n,r,_,m,d){return a(),t("div")}const l=e(o,[["render",s]]);export{i as __pageData,l as default};
