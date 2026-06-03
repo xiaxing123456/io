@@ -11,8 +11,30 @@ const sidebarPlugin = () => {
 const mysqlPlugin = () => {
     return [
         {
-            text: '数据库相关概念',
-            link: '/数据库相关概念',
+            text: 'MySQL',
+            collapsed: false,
+            items: [
+                {
+                    text: '快速入门',
+                    link: '/mysql-quickstart',
+                },
+                {
+                    text: '数据库相关概念',
+                    link: '/数据库相关概念',
+                },
+                {
+                    text: '基础语法',
+                    link: '/mysql-basic-syntax',
+                },
+                {
+                    text: '数据类型',
+                    link: '/mysql-data-types',
+                },
+                {
+                    text: '查询示例',
+                    link: '/mysql-query-examples',
+                },
+            ],
         },
     ];
 };

@@ -7,3 +7,4 @@ node_modules/
 # Docs cache
 docs/.vitepress/cache
 docs/.vitepress/dist
+dist
