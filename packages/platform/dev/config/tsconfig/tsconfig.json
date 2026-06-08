@@ -1,0 +1,83 @@
+{
+    /**
+     * TypeScript 编译器配置
+     * 用于配置整个 monorepo 项目的 TypeScript 编译行为
+     */
+    "compilerOptions": {
+        // 生成 .d.ts 声明文件，供其他包使用
+        "declaration": true,
+
+        // 声明文件输出目录
+        "declarationDir": "dist",
+
+        // 生成声明文件的 source map，便于调试
+        "declarationMap": true,
+
+        // 编译目标为最新 ECMAScript 标准
+        "target": "esnext",
+
+        // 模块系统使用 ESNext（ES6+ 模块）
+        "module": "esnext",
+
+        // 模块解析策略使用 bundler 方式（适配 Vite 等现代构建工具）
+        "moduleResolution": "bundler",
+
+        // 跳过库文件的类型检查，提升编译速度
+        "skipLibCheck": true,
+
+        // 启用装饰器语法支持（用于某些库或框架）
+        "experimentalDecorators": true,
+
+        // 确保每个文件都能独立编译（Vite 构建要求）
+        "isolatedModules": true,
+
+        // 启用所有严格类型检查选项
+        "strict": true,
+
+        // JSX 保持原样，由构建工具处理（Vue 3 需要）
+        "jsx": "preserve",
+
+        // 从 tslib 导入辅助函数，减少代码重复
+        "importHelpers": true,
+
+        // 生成 source map 文件，便于调试
+        "sourceMap": true,
+
+        // 允许导入 JSON 文件作为模块
+        "resolveJsonModule": true,
+
+        // 允许 ES 模块与 CommonJS 模块互操作
+        "esModuleInterop": true,
+
+        // 强制文件名大小写一致性（避免跨平台问题）
+        "forceConsistentCasingInFileNames": true,
+
+        // 包含的类型库：ESNext、DOM API、DOM 迭代器、Script Host
+        "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
+
+        // 移除编译后代码中的注释
+        "removeComments": true,
+
+        // 全局类型定义：Vite 环境变量
+        "types": ["vite/client"]
+    },
+
+    /**
+     * 包含的文件类型
+     * 指定 TypeScript 编译器需要处理的文件
+     */
+    "include": [
+        "**/*.ts", // 所有 TypeScript 文件
+        "**/*.d.ts", // 所有类型声明文件
+        "**/*.tsx", // 所有 TypeScript + JSX 文件
+        "**/*.vue", // 所有 Vue 单文件组件
+    ],
+
+    /**
+     * 排除的目录
+     * 不参与 TypeScript 编译的目录
+     */
+    "exclude": [
+        "node_modules", // 第三方依赖包
+    ]
+}

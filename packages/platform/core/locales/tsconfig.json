@@ -1,0 +1,9 @@
+{
+    "extends": "@io-platform/dev-config/tsconfig/tsconfig",
+    "compilerOptions": {
+        "rootDir": "./src",
+        "types": ["vite/client"]
+    },
+    "include": ["src"],
+    "exclude": ["node_modules"]
+}

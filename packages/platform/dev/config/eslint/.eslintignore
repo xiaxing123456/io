@@ -1,0 +1,13 @@
+workflow-modeler
+
+eZViewer
+
+.vscode/*
+
+node_modules
+
+public/global-source/*
+
+script
+
+vite.config.ts

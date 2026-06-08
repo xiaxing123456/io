@@ -1,0 +1,76 @@
+/** css3 vars */
+:root {
+    /* 字体 */
+    --plt-basic-font-family:
+        'apple-system', 'BlinkMacSystemFont', 'Roboto', 'Segoe UI', 'Arial', 'Helvetica Neue',
+        'Helvetica', 'PingFang SC', 'Microsoft YaHei', 'MiSans', 'WenQuanYi Micro Hei', 'sans-serif';
+
+    /**
+    ===================================
+    基础样式设置 --plt-basic-*
+    ===================================
+    */
+    /* 外边距 */
+    --plt-basic-margin-xs: 4px;
+    --plt-basic-margin-s: 8px;
+    --plt-basic-margin-m: 12px;
+    --plt-basic-margin-l: 16px;
+    --plt-basic-margin-xl: 24px;
+    --plt-basic-margin-xxl: 32px;
+    --plt-basic-margin-common: var(--plt-basic-margin-s);
+
+    /* 内边距 */
+    --plt-basic-padding-xs: 4px;
+    --plt-basic-padding-s: 8px;
+    --plt-basic-padding-m: 12px;
+    --plt-basic-padding-l: 16px;
+    --plt-basic-padding-xl: 24px;
+    --plt-basic-padding-xxl: 32px;
+    --plt-basic-padding-xxxl: 48px;
+    --plt-basic-padding-common: var(--plt-basic-padding-s);
+
+    /* 圆角 */
+    --plt-basic-radius-xs: 2px;
+    --plt-basic-radius-s: 4px;
+    --plt-basic-radius-m: 8px;
+    --plt-basic-radius-l: 16px;
+    --plt-basic-radius-common: var(--plt-basic-radius-s);
+
+    /* 字体大小 */
+    --plt-basic-font-size-xxs: 12px;
+    --plt-basic-font-size-xs: 14px;
+    --plt-basic-font-size-s: 15px;
+    --plt-basic-font-size-ms: 16px;
+    --plt-basic-font-size-m: 18px;
+    --plt-basic-font-size-l: 20px;
+    --plt-basic-font-size-common: var(--plt-basic-font-size-xs);
+
+    /* 颜色 */
+    --plt-basic-color-text-main: #1a1a1a;
+    --plt-basic-color-text-normal: #333333;
+    --plt-basic-color-text-minor-dark: #666666;
+
+    /* 圆角 */
+    --plt-basic-radius-xs: 2px;
+    --plt-basic-radius-s: 4px;
+    --plt-basic-radius-m: 8px;
+    --plt-basic-radius-l: 16px;
+    --plt-basic-radius-common: var(--plt-basic-radius-s);
+
+    /**
+    ===================================
+    按钮样式设置 --plt-btn-*
+    ===================================
+    */
+    /* 按钮高度*/
+    --plt-btn-height: 36px;
+
+    /* 按钮最小宽度*/
+    --plt-btn-min-width: 96px;
+
+        /* svg 字体大小 */
+    --plt-icon-svg-size: 16px;
+
+    /* 默认按钮背景色，对应elementUI 不传type时的按钮 */
+    --plt-btn-default-background-color: transparent;
+}

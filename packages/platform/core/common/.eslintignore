@@ -1,0 +1,7 @@
+workflow-modeler
+
+eZViewer
+
+.vscode/*
+
+node_modules

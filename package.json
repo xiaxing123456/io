@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "init:platform": "node script/build-platform",
     "init:dev": "pnpm build:common && node script/index init:dev",
-    "dev:all": "pnpm --filter @io-platform/engine dev",
-    "build:common": "pnpm --filter @io-platform/common build",
-    "build:dev-tools": "pnpm --filter @io-platform/dev-tools build",
+    "dev:all": "pnpm --filter @io-platform/admin-vue dev",
     "dev:doc-blog": "pnpm --filter doc-blog dev",
+    "build:common": "pnpm --filter @io-platform/common build",
     "build:doc-blog": "pnpm --filter doc-blog build",
     "build:docs": "node script/build-all-docs",
     "preview:docs": "pnpm build:docs && npx serve docs/dist -l 8080"
@@ -18,12 +18,12 @@
   "packageManager": "pnpm@10.21.0",
   "dependencies": {
     "@intlify/core-base": "^11.2.8",
-    "@io-platform/common": "workspace:*",
-    "@io-platform/core-composables": "workspace:*",
+    "@io-platform/core-http": "workspace:*",
+    "@io-platform/core-common": "workspace:*",
+    "@io-platform/core-locales": "workspace:*",
     "@io-platform/dev-config": "workspace:*",
     "@io-platform/dev-tools": "workspace:*",
-    "@io-platform/engine": "workspace:*",
-    "@io-platform/locales": "workspace:*",
+    "@io-platform/admin-vue": "workspace:*",
     "axios": "^1.13.2",
     "element-plus": "^2.13.1",
     "jsencrypt": "^3.5.4",
@@ -33,7 +33,9 @@
     "secure-ls": "^2.0.0",
     "vue": "^3.5.26",
     "vue-i18n": "^11.2.8",
-    "vue-router": "^4.6.4"
+    "vue-router": "^4.6.4",
+    "qs": "6.10.3",
+    "mathjs": "9.4.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",
@@ -60,6 +62,7 @@
     "vite": "^7.3.0",
     "vite-plugin-vue-devtools": "^8.0.5",
     "vitepress": "2.0.0-alpha.15",
-    "vue-tsc": "^3.2.2"
+    "vue-tsc": "^3.2.2",
+    "rimraf": "6.0.1"
   }
 }

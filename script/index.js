@@ -1,9 +1,9 @@
-const path = require("path");
-const fs = require("fs");
-const { geEnvFile } = require("@io-platform/dev-tools");
+const path = require('path');
+const fs = require('fs');
+const { geEnvFile } = require('@io-platform/dev-tools');
 
 /** 项目根路径 */
-const rootPath = path.resolve(__dirname, "..");
+const rootPath = path.resolve(__dirname, '..');
 
 // 输出指令
 const args = process.argv.slice(2);
@@ -29,19 +29,19 @@ const handleGeDocEnvFile = ({ sourcePkgName, targetPkgName }) => {
 
 // 定义命令处理函数
 const commandHandlers = {
-  "init:dev": async () => {
+  'init:dev': async () => {
     const promises = [
       Promise.resolve().then(() =>
         handleGeEnvFile({
-          sourcePkgName: "engine",
-          targetPkgName: "platform/engine",
-        }),
+          sourcePkgName: 'engine',
+          targetPkgName: 'platform/admin-vue',
+        })
       ),
       Promise.resolve().then(() =>
         handleGeDocEnvFile({
-          sourcePkgName: "doc-blog",
-          targetPkgName: "doc-blog",
-        }),
+          sourcePkgName: 'doc-blog',
+          targetPkgName: 'doc-blog',
+        })
       ),
     ];
     await Promise.all(promises);
@@ -53,7 +53,7 @@ const run = async () => {
     if (commandHandlers[command]) {
       commandHandlers[command]();
     } else {
-      console.log("无效的命令");
+      console.log('无效的命令');
     }
   }
 };

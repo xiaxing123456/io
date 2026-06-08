@@ -1,0 +1,14 @@
+{
+  "name": "@io-platform/admin-vue",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development vite",
+    "build": "run-p type-check \"build-only {@}\" --"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
+    "autoprefixer": "^10.4.23"
+  }
+}

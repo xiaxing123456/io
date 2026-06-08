@@ -1,0 +1,28 @@
+{
+   "compilerOptions": {
+        "declaration": true,
+        "declarationDir": "dist/types",
+        "declarationMap": false,
+        "target": "esnext",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "ignoreDeprecations": "6.0",
+        "skipLibCheck": true,
+        "strict": true,
+        "importHelpers": true,
+        "sourceMap": false,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "lib": ["esnext", "dom", "dom.iterable"],
+        "baseUrl": ".",
+        "rootDir": "./src",
+        "paths": {
+            "@/*": ["src/*"]
+        },
+        "outDir": "./dist/esm",
+        "allowJs": true,
+        "resolveJsonModule": true
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist"]
+}
