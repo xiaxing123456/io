@@ -96,7 +96,7 @@ export const extractFileName = (response: AxiosResponse): string => {
  *
  * @example
  * ```typescript
- * import { downloadBlob } from '@dmsplatform/http/utils';
+ * import { downloadBlob } from '@io-platform/core-http/utils';
  *
  * const blob = new Blob([data], { type: 'application/pdf' });
  * downloadBlob(blob, 'document.pdf');

@@ -4,9 +4,7 @@
         "baseUrl": ".",
         "rootDir": "./src",
         "ignoreDeprecations": "6.0",
-        "paths": {
-            "@engine/*": ["../../../node_modules/@io-platform/config-engine/src/*"]
-        },
+        "paths": {},
         "types": ["vite/client"]
     },
     "include": [
@@ -14,7 +12,7 @@
         "src/**/*.d.ts",
         "src/**/*.tsx",
         "src/**/*.vue",
-        "../../../node_modules/@io-platform/common/src/types/**/*.d.ts"
+        "../../../../node_modules/@io-platform/core-common/src/types/**/*.d.ts"
     ],
     "exclude": ["node_modules"]
 }

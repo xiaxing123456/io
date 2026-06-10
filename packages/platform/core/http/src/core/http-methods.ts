@@ -1,5 +1,5 @@
-import { downloadBlob } from '@/utils';
 import { AxiosResponse } from 'axios';
+import { downloadBlob } from '../utils';
 import { AjaxConfigOptions, FileStreamConfig, HttpClient } from './core.types';
 
 export const createRequestMethods = (http: HttpClient) => {

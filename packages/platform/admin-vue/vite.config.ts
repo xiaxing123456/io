@@ -36,6 +36,7 @@ export default defineConfig({
     host: process.env.VITE_HOST || '127.0.0.1',
     port: +(process.env.VITE_PORT || 3000), // 设置服务启动端口号
     open: process.env.VITE_OPEN_BROWSER === 'on', // 设置服务启动时是否自动打开浏览器
+    strictPort: false,
     cors: true, // 允许跨域
     proxy: {
       // 接口代理

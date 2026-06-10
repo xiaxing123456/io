@@ -1,5 +1,5 @@
 <template>
-  <div class="login-page">
+  <div ref="loginPageRef" class="login-page">
     <!-- 背景动画 -->
     <animate-background></animate-background>
 
@@ -118,6 +118,8 @@
 </template>
 
 <script lang="ts" setup>
+import { login } from '@admin-vue/apis/login';
+import { useApi } from '@admin-vue/composables/use-api';
 import { useRSAEncrypt } from '@admin-vue/composables/use-rsa-encrypt';
 import AnimateBackground from '@admin-vue/views/login/animate-background.vue';
 import { $t } from '@locales';
@@ -125,6 +127,7 @@ import { reactive, ref } from 'vue';
 
 const { encrypt } = useRSAEncrypt();
 
+const loginPageRef = ref();
 const formRef = ref();
 const formData = reactive({
   username: '',
@@ -132,17 +135,27 @@ const formData = reactive({
 });
 
 /** 用户登录 */
-const submitLogin = async () => {
-  try {
-    await formRef.value.validate();
-    loginHandler(formData.username, formData.password);
-  } catch (error) {
-    logger.error(error);
-  }
-  formRef.value.validate((valid: boolean) => {
-    if (!valid) return;
-  });
-};
+const submitLogin = useApi(
+  async () => {
+    try {
+      await formRef.value.validate();
+
+      const { encrypted } = await encrypt(formData.password);
+      const params = {
+        userName: 'xiaxing',
+        password: encrypted,
+      };
+      const { data } = await login(params);
+      console.log('222222222222222222222');
+    } catch (error) {
+      console.log('3333333333333333333');
+    } finally {
+      console.log('1111111111111');
+    }
+  },
+  loginPageRef,
+  { showLoading: false, debounce: false }
+).fetchResource;
 
 /** 正式环境登录处理 */
 const loginHandler = async (user: string, password: string) => {
@@ -152,7 +165,6 @@ const loginHandler = async (user: string, password: string) => {
     pwd: encrypted,
     encrypt: 1,
   };
-  console.log(dataParams);
 };
 </script>
 
