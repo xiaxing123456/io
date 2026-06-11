@@ -9,13 +9,11 @@
 // ==================== 核心层 ====================
 export {
   ContentTypeEnum,
-  createAxiosInstance,
-  createHttpClient,
+  CreateHttpClient,
   createRequestMethods,
   HttpMethodEnum,
   HttpStatusCode,
-  isRequestCancelled,
-} from './core';
+} from './core/index';
 
 // 类型
 export type {
@@ -28,7 +26,7 @@ export type {
   PendingRequest,
   PltConfig,
   UploadData,
-} from './core';
+} from './core/index';
 
 // ==================== Axios类型 ====================
 

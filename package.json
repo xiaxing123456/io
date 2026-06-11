@@ -24,7 +24,7 @@
     "@io-platform/dev-config": "workspace:*",
     "@io-platform/dev-tools": "workspace:*",
     "@io-platform/admin-vue": "workspace:*",
-    "axios": "^1.13.2",
+    "axios": "1.13.2",
     "element-plus": "^2.13.1",
     "jsencrypt": "^3.5.4",
     "lodash": "^4.17.21",

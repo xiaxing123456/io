@@ -82,6 +82,15 @@
               show-password
             ></el-input>
           </el-form-item>
+          <!-- 验证码 -->
+          <el-form-item :label="$t('login.codeLabel')">
+            <el-input
+              v-model="formData.password"
+              type="password"
+              :placeholder="$t('login.passwordPlaceholder')"
+              show-password
+            ></el-input>
+          </el-form-item>
         </el-form>
 
         <el-button type="primary" @click="submitLogin">
@@ -132,6 +141,8 @@ const formRef = ref();
 const formData = reactive({
   username: '',
   password: '',
+  captcha: '',
+  codeKey: '',
 });
 
 /** 用户登录 */

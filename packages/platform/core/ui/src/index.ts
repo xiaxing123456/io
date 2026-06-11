@@ -1,3 +1,5 @@
+import './styles/index.scss';
+
 import PltIcon from './components/plt-icon/plt-icon.vue';
 
 export const pltCommonComponents = [PltIcon];

@@ -1,0 +1,28 @@
+:root,
+[data-plt-theme='light'] {
+  // =================== 颜色 ============================
+  --plt-basic-color-primary: #409eff;
+  --plt-basic-color-white: #ffffff;
+  --plt-basic-color-error: #fc514e;
+  --plt-basic-color-warning: #ffa200;
+  --plt-basic-color-success: #58d617;
+  --plt-basic-color-message: #999999;
+
+  /* 背景色*/
+  --plt-basic-bg-color: var(--plt-basic-color-white);
+  --plt-basic-bg-color-rgb: 255, 255, 255;
+
+  /* 主题色变换，透明度稀释变浅 */
+  --plt-basic-color-primary-light-1: rgba(var(--plt-basic-color-primary), 0.9);
+  --plt-basic-color-primary-light-2: rgba(var(--plt-basic-color-primary), 0.8);
+  --plt-basic-color-primary-light-3: rgba(var(--plt-basic-color-primary), 0.7);
+  --plt-basic-color-primary-light-4: rgba(var(--plt-basic-color-primary), 0.6);
+  --plt-basic-color-primary-light-5: rgba(var(--plt-basic-color-primary), 0.5);
+  --plt-basic-color-primary-light-6: rgba(var(--plt-basic-color-primary), 0.4);
+  --plt-basic-color-primary-light-7: rgba(var(--plt-basic-color-primary), 0.3);
+  --plt-basic-color-primary-light-8: rgba(var(--plt-basic-color-primary), 0.2);
+  --plt-basic-color-primary-light-9: rgba(var(--plt-basic-color-primary), 0.1);
+
+  --plt-basic-bg-color:                 
+;
+}

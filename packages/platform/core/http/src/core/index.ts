@@ -4,7 +4,7 @@
  */
 
 // HTTP客户端
-export { createAxiosInstance, createHttpClient, isRequestCancelled } from './http-client';
+export { CreateHttpClient } from './CreateHttpClient';
 
 // 方法
 export { createRequestMethods } from './http-methods';

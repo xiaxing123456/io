@@ -1,4 +1,6 @@
-import { createHttpClient, type HttpClient } from '@io-platform/core-http';
+import type { HttpClient } from '@io-platform/core-http';
+
+import { CreateHttpClient } from '@io-platform/core-http';
 import { PlatformHttpConfig } from '../index.type';
 import { createPlatformHooks } from './hooks';
 import { setTokenAdapter } from './tools';
@@ -11,17 +13,14 @@ export const createPlatformHttp = (config: PlatformHttpConfig): HttpClient => {
     setTokenAdapter(tokenAdapter);
   }
 
-  // 使用延迟获取解决循环引用
-  let httpInstance: HttpClient;
-
   const hooks = createPlatformHooks({});
 
-  httpInstance = createHttpClient({
+  const createHttpClient = new CreateHttpClient({
     baseURL,
     timeout,
     hooks,
     tokenHeaderKey: 'Authorization',
   });
 
-  return httpInstance;
+  return createHttpClient.instance;
 };
