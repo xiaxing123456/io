@@ -13,4 +13,9 @@ export const routers: RouteRecordRaw[] = [
       [RouteMetaCustomizeOpsKey.Name]: {},
     },
   },
+  {
+    path: '/',
+    name: 'Main',
+    component: viewComponent.Main,
+  },
 ];

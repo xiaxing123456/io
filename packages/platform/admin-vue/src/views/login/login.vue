@@ -58,44 +58,55 @@
         <div class="login-header">
           <h3>
             <!-- 欢迎回来 -->
-            {{ $t('login.welcomeBack') }}
+            {{ $t('login_page.welcomeBack') }}
           </h3>
           <p>
             <!-- 立即登录以管理您的游戏项目和教程 -->
-            {{ $t('login.subtitle') }}
+            {{ $t('login_page.subtitle') }}
           </p>
         </div>
-        <el-form ref="formRef" label-position="top" class="login-form" :model="formData">
+        <el-form
+          ref="formRef"
+          label-position="top"
+          class="login-form"
+          :model="formData"
+          :rules="formRule"
+        >
           <!-- 用户名/手机号 -->
-          <el-form-item :label="$t('login.usernameLabel')">
+          <el-form-item :label="$t('login_page.usernameLabel')" prop="username">
             <el-input
               v-model="formData.username"
-              :placeholder="$t('login.usernamePlaceholder')"
+              :placeholder="$t('login_page.usernamePlaceholder')"
             ></el-input>
           </el-form-item>
           <!-- 密码 -->
-          <el-form-item :label="$t('login.passwordLabel')">
+          <el-form-item :label="$t('login_page.passwordLabel')" prop="password">
             <el-input
               v-model="formData.password"
               type="password"
-              :placeholder="$t('login.passwordPlaceholder')"
+              :placeholder="$t('login_page.passwordPlaceholder')"
               show-password
             ></el-input>
           </el-form-item>
           <!-- 验证码 -->
-          <el-form-item :label="$t('login.codeLabel')">
-            <el-input
-              v-model="formData.password"
-              type="password"
-              :placeholder="$t('login.passwordPlaceholder')"
-              show-password
-            ></el-input>
+          <el-form-item :label="$t('login_page.codeLabel')" prop="captcha">
+            <div class="captcha-row">
+              <el-input
+                v-model="formData.captcha"
+                :placeholder="$t('login_page.codePlaceholder')"
+              ></el-input>
+              <div ref="captchaRef" class="captcha-image">
+                <button type="button" :title="$t('login_page.refreshCaptcha')" @click="getCaptcha">
+                  <img :src="captchaBase64" :alt="$t('login_page.codeLabel')" />
+                </button>
+              </div>
+            </div>
           </el-form-item>
         </el-form>
 
         <el-button type="primary" @click="submitLogin">
           <!-- 立即登录 -->
-          {{ $t('login.loginButton') }}
+          {{ $t('login_page.loginButton') }}
         </el-button>
 
         <!-- 社交登录 -->
@@ -104,7 +115,7 @@
             <div class="login-divider__line"></div>
             <span>
               <!-- 第三方快捷登录 -->
-              {{ $t('login.thirdPartyLogin') }}
+              {{ $t('login_page.thirdPartyLogin') }}
             </span>
           </div>
           <div class="social-login-grid">
@@ -127,56 +138,67 @@
 </template>
 
 <script lang="ts" setup>
-import { login } from '@admin-vue/apis/login';
+import { generateValidateCode, login } from '@admin-vue/apis/login';
 import { useApi } from '@admin-vue/composables/use-api';
 import { useRSAEncrypt } from '@admin-vue/composables/use-rsa-encrypt';
+import { $t } from '@admin-vue/i18n';
 import AnimateBackground from '@admin-vue/views/login/animate-background.vue';
-import { $t } from '@locales';
-import { reactive, ref } from 'vue';
+import { onMounted, reactive, ref } from 'vue';
 
 const { encrypt } = useRSAEncrypt();
 
 const loginPageRef = ref();
 const formRef = ref();
+const captchaRef = ref();
+const captchaBase64 = ref('');
 const formData = reactive({
   username: '',
   password: '',
   captcha: '',
   codeKey: '',
 });
+const formRule = reactive({
+  username: [
+    { required: true, message: $t('message.span_error_placeholder_input'), trigger: 'blur' },
+  ],
+  password: [
+    { required: true, message: $t('message.span_error_placeholder_input'), trigger: 'blur' },
+  ],
+  captcha: [
+    { required: true, message: $t('message.span_error_placeholder_input'), trigger: 'blur' },
+  ],
+});
 
 /** 用户登录 */
-const submitLogin = useApi(
-  async () => {
-    try {
-      await formRef.value.validate();
+const submitLogin = useApi(async () => {
+  try {
+    await formRef.value.validate();
 
-      const { encrypted } = await encrypt(formData.password);
-      const params = {
-        userName: 'xiaxing',
-        password: encrypted,
-      };
-      const { data } = await login(params);
-      console.log('222222222222222222222');
-    } catch (error) {
-      console.log('3333333333333333333');
-    } finally {
-      console.log('1111111111111');
-    }
-  },
-  loginPageRef,
-  { showLoading: false, debounce: false }
-).fetchResource;
+    const { encrypted } = await encrypt(formData.password);
+    const params = {
+      userName: formData.username,
+      password: encrypted,
+      captcha: formData.captcha,
+      codeKey: formData.codeKey,
+    };
+    const { data } = await login(params);
+  } catch (error) {}
+}, loginPageRef).fetchResource;
 
-/** 正式环境登录处理 */
-const loginHandler = async (user: string, password: string) => {
-  const { encrypted } = await encrypt(password);
-  let dataParams = {
-    user,
-    pwd: encrypted,
-    encrypt: 1,
-  };
-};
+/** 获取或者更新验证码 */
+const getCaptcha = useApi(async () => {
+  try {
+    const { data } = await generateValidateCode();
+    captchaBase64.value = data.codeValue;
+    formData.codeKey = data.codeKey;
+  } catch (error) {
+    logger.error(error);
+  }
+}, captchaRef).fetchResource;
+
+onMounted(async () => {
+  await getCaptcha();
+});
 </script>
 
 <style lang="scss" scoped>
@@ -382,6 +404,49 @@ const loginHandler = async (user: string, password: string) => {
     .el-input__inner {
       color: #fff;
     }
+  }
+}
+
+.captcha-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.captcha-image {
+  display: flex;
+  flex: 0 0 112px;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+  background: rgb(15 23 42 / 0.65);
+  border: 1px solid rgb(148 163 184 / 0.24);
+  border-radius: 4px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    user-select: none;
+  }
+
+  &:hover {
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 1px rgb(96 165 250 / 0.18);
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #60a5fa;
+    outline-offset: 2px;
   }
 }
 

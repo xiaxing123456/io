@@ -1,10 +1,23 @@
 {
-    "auth": {
-        "login": "login",
-        "register": "注册",
-        "codeLogin": "验证码登录",
-        "qrcodeLogin": "二维码登录",
-        "forgetPassword": "忘记密码",
-        "profile": "个人中心"
-    }
+  "auth": {
+    "login": "login",
+    "register": "注册",
+    "codeLogin": "验证码登录",
+    "qrcodeLogin": "二维码登录",
+    "forgetPassword": "忘记密码",
+    "profile": "个人中心"
+  },
+  "login": {
+    "welcomeBack": "Welcome back",
+    "subtitle": "Log in to manage your game projects and tutorials",
+    "usernameLabel": "Username / Phone",
+    "usernamePlaceholder": "Enter your account",
+    "passwordLabel": "Password",
+    "codeLabel": "Captcha",
+    "codePlaceholder": "Enter captcha",
+    "refreshCaptcha": "Click to refresh captcha",
+    "passwordPlaceholder": "Enter password",
+    "loginButton": "Log in now",
+    "thirdPartyLogin": "Quick third-party login"
+  }
 }
