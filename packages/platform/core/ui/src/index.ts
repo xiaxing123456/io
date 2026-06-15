@@ -1,9 +1,14 @@
+import pltCommonComponents from './components';
 import './styles/index.scss';
-
-import PltIcon from './components/plt-icon/plt-icon.vue';
-
-export const pltCommonComponents = [PltIcon];
 
 const platformUIComponents = [...pltCommonComponents];
 
 export { platformUIComponents };
+export * from './components';
+export { PltLoading } from './components/plt-loading';
+export type {
+  LoadingInstance,
+  LoadingOptions,
+  LoadingParentElement,
+  LoadingTarget,
+} from './components/plt-loading';

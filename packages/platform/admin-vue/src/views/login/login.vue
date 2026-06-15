@@ -138,14 +138,16 @@
 </template>
 
 <script lang="ts" setup>
-import { generateValidateCode, login } from '@admin-vue/apis/login';
+import { generateValidateCode } from '@admin-vue/apis/login';
 import { useApi } from '@admin-vue/composables/use-api';
 import { useRSAEncrypt } from '@admin-vue/composables/use-rsa-encrypt';
 import { $t } from '@admin-vue/i18n';
+import { userAccessStore } from '@admin-vue/stores';
 import AnimateBackground from '@admin-vue/views/login/animate-background.vue';
 import { onMounted, reactive, ref } from 'vue';
 
 const { encrypt } = useRSAEncrypt();
+const userAccess = userAccessStore();
 
 const loginPageRef = ref();
 const formRef = ref();
@@ -157,6 +159,7 @@ const formData = reactive({
   captcha: '',
   codeKey: '',
 });
+
 const formRule = reactive({
   username: [
     { required: true, message: $t('message.span_error_placeholder_input'), trigger: 'blur' },
@@ -181,7 +184,7 @@ const submitLogin = useApi(async () => {
       captcha: formData.captcha,
       codeKey: formData.codeKey,
     };
-    const { data } = await login(params);
+    await userAccess.login(params);
   } catch (error) {}
 }, loginPageRef).fetchResource;
 

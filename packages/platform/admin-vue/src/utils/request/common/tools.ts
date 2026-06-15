@@ -14,8 +14,8 @@ let tokenAdapter: TokenAdapter | null = null;
  * 设置token适配器
  * 由应用层注入实际的token管理实现
  */
-export const setTokenAdapter = (adapter: TokenAdapter): void => {
-  tokenAdapter = adapter;
+export const setTokenAdapter = (adapter: () => TokenAdapter): void => {
+  tokenAdapter = adapter();
 };
 
 export const tokenManager = {
@@ -36,10 +36,6 @@ export const tokenManager = {
     } else {
       tokenStorage = null;
     }
-  },
-  getAuthorization: (): string | null => {
-    if (tokenAdapter) return tokenAdapter.getToken();
-    return tokenStorage;
   },
 };
 

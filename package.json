@@ -18,6 +18,7 @@
   "packageManager": "pnpm@10.21.0",
   "dependencies": {
     "@intlify/core-base": "^11.2.8",
+    "@io-platform/core-ui": "workspace:*",
     "@io-platform/core-http": "workspace:*",
     "@io-platform/core-common": "workspace:*",
     "@io-platform/core-locales": "workspace:*",
@@ -35,7 +36,10 @@
     "vue-i18n": "^11.2.8",
     "vue-router": "^4.6.4",
     "qs": "6.10.3",
-    "mathjs": "9.4.4"
+    "mathjs": "9.4.4",
+    "vxe-table": "4.10.3",
+    "xe-utils": "3.5.14",
+    "sortablejs": "1.14.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",
@@ -63,6 +67,7 @@
     "vite-plugin-vue-devtools": "^8.0.5",
     "vitepress": "2.0.0-alpha.15",
     "vue-tsc": "^3.2.2",
-    "rimraf": "6.0.1"
+    "rimraf": "6.0.1",
+    "@types/sortablejs": "1.10.7"
   }
 }

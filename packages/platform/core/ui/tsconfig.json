@@ -1,10 +1,7 @@
 {
     "extends": "@io-platform/dev-config/tsconfig/tsconfig",
     "compilerOptions": {
-        "baseUrl": ".",
         "rootDir": "./src",
-        "ignoreDeprecations": "6.0",
-        "paths": {},
         "types": ["vite/client"]
     },
     "include": [

@@ -15,7 +15,7 @@ import { PlatformHooksConfig } from '../index.type';
 export const createPlatformHooks = (config: PlatformHooksConfig): HttpClientHooks => {
   return {
     getHeaders: headers => buildHeaders(headers),
-    getToken: () => tokenManager.getAuthorization(),
+    getToken: () => tokenManager.getToken(),
     afterResponse: async (response: AxiosResponse) => {
       const ajaxConfig = response.config as AjaxConfigOptions;
       // 业务失败处理
@@ -23,7 +23,7 @@ export const createPlatformHooks = (config: PlatformHooksConfig): HttpClientHook
         const msg = response.data?.message;
 
         // 是否隐藏Toast 默认显示
-        if (!ajaxConfig?.pltConfig?.hideToast) ElMessage.error(msg);
+        if (!ajaxConfig?.pltConfig?.hideToast && msg) ElMessage.error(msg);
         return Promise.reject(response);
       }
       return response;

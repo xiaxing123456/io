@@ -1,0 +1,85 @@
+.plt-tree {
+    :deep(.vxe-table) {
+        .vxe-table--header-wrapper {
+            display: none;
+        }
+        .vxe-table--body .vxe-body--row {
+            background: unset;
+        }
+        .vxe-table--body-wrapper {
+            overflow-x: auto;
+            .vxe-table--body {
+                table-layout: auto;
+                min-width: 100%;
+
+                colgroup col {
+                    width: auto !important;
+                }
+
+                .vxe-body--row {
+                    .vxe-body--column {
+                        cursor: pointer;
+                        padding: 0;
+                        &:hover {
+                            background-color: rgba(var(--plt-basic-color-primary), 0.2) !important;
+                            color: var(--plt-basic-color-primary-16);
+                        }
+                        .vxe-cell {
+                            white-space: nowrap;
+                            padding-left: var(--plt-basic-padding-s) !important;
+                        }
+
+                        .vxe-tree-cell, .vxe-cell--tree-node, .vxe-cell {
+                            width: fit-content !important;
+                            min-width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+        &.is--empty {
+            height: 100%;
+            .vxe-table--empty-placeholder {
+                top: calc(50% - 25px) !important;
+                max-height: 50px;
+            }
+            &::after {
+                display: inline-block;
+                content: '';
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                top: calc(50% - 75px);
+                width: 178px;
+                height: 150px;
+                border-radius: 50%;
+                background: rgba(var(--plt-basic-bg-color-rgb), 0.65);
+            }
+        }
+        .vxe-table--body-wrapper .vxe-table--body .vxe-body--row .vxe-body--column .vxe-cell {
+            padding-right: 0;
+        }
+    }
+
+    :deep(.vxe-cell--checkbox.is--checked) {
+        color: unset;
+    }
+
+    :deep(.vxe-checkbox--icon) {
+        display: inline-block;
+        width: 16px;
+    }
+
+    :deep(.highlight) {
+        color: red;
+    }
+
+    :deep(.vxe-table--render-default) .vxe-tree-cell {
+        padding-left: var(--plt-basic-padding-xl);
+    }
+
+}
+
+:global(.plt-loading_wrap .plt-tree .plt-empty) {
+    opacity: 0!important; /* 初始状态为隐藏 */
+}

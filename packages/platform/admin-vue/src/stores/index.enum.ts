@@ -9,7 +9,7 @@ export enum PiniaName {
   /**
    * @zh_CN 用户模块
    */
-  User = 'user',
+  UserAccess = 'user-access',
   /**
    * @zh_CN 路由模块
    */

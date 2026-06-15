@@ -1,8 +1,8 @@
 import type { AsyncFunction, UseApiOptions } from '@admin-vue/composables/use-api/index.types';
-import type { LoadingInstance } from '@io-platform/core-ui/src/components/plt-loading';
+import type { LoadingInstance } from '@io-platform/core-ui/components/plt-loading';
 import type { Ref } from 'vue';
 
-import { PltLoading } from '@io-platform/core-ui/src/components/plt-loading';
+import { PltLoading } from '@io-platform/core-ui/components/plt-loading';
 import { isRef, ref } from 'vue';
 
 export const useApiDefaultProps = {

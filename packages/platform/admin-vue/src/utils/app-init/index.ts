@@ -6,6 +6,7 @@ import { initStores } from '@admin-vue/stores';
 import { envVariables } from '@admin-vue/utils/env-var';
 
 import { platformUIComponents } from '@io-platform/core-ui';
+import '@io-platform/core-ui/style.css';
 import ElementPlus from 'element-plus';
 
 export const initApp = async (app: App) => {

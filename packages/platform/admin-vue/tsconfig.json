@@ -1,11 +1,9 @@
 {
     "extends": "@io-platform/dev-config/tsconfig/tsconfig",
     "compilerOptions": {
-        "baseUrl": ".",
         "rootDir": "./src",
-        "ignoreDeprecations": "6.0",
         "paths": {
-            "@admin-vue/*": ["src/*"],
+            "@admin-vue/*": ["./src/*"],
             "@locales": ["../../../node_modules/@io-platform/core-locales/src"],
         },
         "types": ["vite/client"]

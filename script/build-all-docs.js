@@ -9,7 +9,7 @@ const docsDir = path.join(rootDir, "docs");
 const portalDir = path.join(docsDir, "docs-portal");
 
 // 文档项目列表（与 docs-portal/script.js 中的配置保持一致）
-const docProjects = ["doc-blog"];
+const docProjects = ["doc-blog", "doc-ui"];
 
 // 存储所有版本信息
 const allVersions = {};

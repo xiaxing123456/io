@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm --filter @io-platform/core-ui build)",
+      "Bash(pnpm --filter @io-platform/core-ui pack --dry-run)",
+      "Bash(pnpm --filter @io-platform/admin-vue exec vue-tsc -p tsconfig.json --noEmit)"
+    ]
+  }
+}

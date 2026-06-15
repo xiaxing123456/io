@@ -117,6 +117,10 @@ export default defineConfig({
                 base: '/doc-menu/java/',
                 items: sideberPlugin.javaPlugin(),
             },
+            'doc-menu/doc-ui/': {
+                base: '/doc-menu/doc-ui/',
+                items: sideberPlugin.docUIPlugin(),
+            },
             'doc-menu/project/': {
                 base: '/doc-menu/project/',
                 items: sideberPlugin.projectPlugin(),

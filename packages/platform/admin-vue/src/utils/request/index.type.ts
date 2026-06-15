@@ -13,7 +13,7 @@ export interface PlatformHttpConfig {
   baseURL?: string;
   timeout?: number;
   /** Token适配器 - 注入实际的token管理 */
-  tokenAdapter?: TokenAdapter;
+  tokenAdapter?: () => TokenAdapter;
 }
 
 /** 错误处理器 - 由调用方实现具体的UI提示和国际化 */
