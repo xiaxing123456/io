@@ -1,11 +1,6 @@
 <template>
   <div class="menu-demo">
-    <plt-menu
-      :data="menus"
-      :min-size="42"
-      default-active="/system/user"
-      @node-click="handleNodeClick"
-    />
+    <plt-menu :data="menus" default-active="/system/user" @node-click="handleNodeClick" />
   </div>
 </template>
 

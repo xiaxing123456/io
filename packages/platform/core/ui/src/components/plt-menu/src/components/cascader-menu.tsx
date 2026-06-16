@@ -1,8 +1,8 @@
+import { computed, defineComponent, h, nextTick, onMounted, PropType, ref } from 'vue';
 import PltVirtuallyList from '../../../plt-virtually-list/plt-virtually-list';
 import { useTextWidth } from '../composables/use-text-width';
 import type { ITreeNode } from '../type';
 import { calculateMenuPosition } from '../util';
-import { computed, defineComponent, h, nextTick, onMounted, PropType, ref } from 'vue';
 
 export default defineComponent({
   name: 'CascaderMenu',
@@ -219,7 +219,7 @@ export default defineComponent({
           hasChildren
             ? h('span', {
                 class: [
-                  'icon-plt-rig_Light',
+                  'icon-plt-uirig_Light',
                   {
                     'rotate-icon': hoveredPath.value.includes(itemData),
                   },

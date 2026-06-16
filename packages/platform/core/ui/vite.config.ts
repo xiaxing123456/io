@@ -10,6 +10,7 @@ const externalDependencies = [
   'element-plus',
   'lodash-es',
   'sortablejs',
+  'splitpanes',
   'vue',
   'vue-router',
   'vxe-table',

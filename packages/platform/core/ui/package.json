@@ -6,30 +6,6 @@
   "module": "./dist/esm/index.mjs",
   "types": "./dist/types/index.d.ts",
   "style": "./dist/style.css",
-  "exports": {
-    ".": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/esm/index.mjs",
-      "require": "./dist/cjs/index.cjs"
-    },
-    "./components": {
-      "types": "./dist/types/components/index.d.ts",
-      "import": "./dist/esm/components/index.mjs",
-      "require": "./dist/cjs/components/index.cjs"
-    },
-    "./components/plt-loading": {
-      "types": "./dist/types/components/plt-loading/index.d.ts",
-      "import": "./dist/esm/components/plt-loading/index.mjs",
-      "require": "./dist/cjs/components/plt-loading/index.cjs"
-    },
-    "./src/components/plt-loading": {
-      "types": "./dist/types/components/plt-loading/index.d.ts",
-      "import": "./dist/esm/components/plt-loading/index.mjs",
-      "require": "./dist/cjs/components/plt-loading/index.cjs"
-    },
-    "./style.css": "./dist/style.css",
-    "./package.json": "./package.json"
-  },
   "files": [
     "dist",
     "README.md"
@@ -57,6 +33,7 @@
     "@vueuse/core": "^14.1.0",
     "lodash-es": "^4.17.22",
     "sortablejs": "1.14.0",
+    "splitpanes": "^4.1.2",
     "xe-utils": "3.5.14"
   },
   "devDependencies": {

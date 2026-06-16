@@ -1,6 +1,10 @@
-import type { ITreeNode } from '../type';
-import { findNodeByClass, highlightTextInNode, replaceVNodeByClass } from '../../../plt-tree/helper';
 import { defineComponent, h, PropType, VNode } from 'vue';
+import {
+  findNodeByClass,
+  highlightTextInNode,
+  replaceVNodeByClass,
+} from '../../../plt-tree/helper';
+import type { ITreeNode } from '../type';
 
 // 定义 treeNodeProps 属性，用于接收树节点相关的配置信息
 export const treeNodeProps = {
@@ -157,7 +161,7 @@ export default defineComponent({
         class: [
           'virtually-tree-icon',
           { 'virtually-tree-icon--expanded': expanded },
-          'icon-plt-xiala',
+          'icon-plt-uivv_Light',
         ],
         onClick: handleToggle, // 切换展开状态
       });

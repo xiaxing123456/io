@@ -7,6 +7,7 @@
     "init:dev": "pnpm build:common && node script/index init:dev",
     "dev:all": "pnpm --filter @io-platform/admin-vue dev",
     "dev:doc-blog": "pnpm --filter doc-blog dev",
+    "dev:doc-ui": "pnpm --filter doc-ui dev",
     "build:common": "pnpm --filter @io-platform/common build",
     "build:doc-blog": "pnpm --filter doc-blog build",
     "build:docs": "node script/build-all-docs",

@@ -1,26 +1,95 @@
 :root,
 [data-plt-theme='light'] {
   // =================== 颜色 ============================
-  --plt-basic-color-primary: #409eff;
-  --plt-basic-color-white: #ffffff;
-  --plt-basic-color-error: #fc514e;
-  --plt-basic-color-warning: #ffa200;
-  --plt-basic-color-success: #58d617;
-  --plt-basic-color-message: #999999;
+  --plt-basic-color-primary: #409eff; // 主题色
+  --plt-basic-color-primary-rgb: 64, 158, 255; // 主题色 RGB，用于 rgba()
+  --plt-basic-color-primary-16: var(--plt-basic-color-primary); // 兼容旧主题强调色变量
+  --plt-basic-color-white: #ffffff; // 白色
+  --plt-basic-color-error: #fc514e; // 错误红色
+  --plt-basic-color-warning: #ffa200; // 警告黄色
+  --plt-basic-color-success: #58d617; // 成功绿色
+  --plt-basic-color-message: #999999; // 消息灰色
 
   /* 背景色*/
   --plt-basic-bg-color: var(--plt-basic-color-white);
   --plt-basic-bg-color-rgb: 255, 255, 255;
 
-  /* 主题色变换，透明度稀释变浅 */
-  --plt-basic-color-primary-light-1: rgba(var(--plt-basic-color-primary), 0.9);
-  --plt-basic-color-primary-light-2: rgba(var(--plt-basic-color-primary), 0.8);
-  --plt-basic-color-primary-light-3: rgba(var(--plt-basic-color-primary), 0.7);
-  --plt-basic-color-primary-light-4: rgba(var(--plt-basic-color-primary), 0.6);
-  --plt-basic-color-primary-light-5: rgba(var(--plt-basic-color-primary), 0.5);
-  --plt-basic-color-primary-light-6: rgba(var(--plt-basic-color-primary), 0.4);
-  --plt-basic-color-primary-light-7: rgba(var(--plt-basic-color-primary), 0.3);
-  --plt-basic-color-primary-light-8: rgba(var(--plt-basic-color-primary), 0.2);
-  --plt-basic-color-primary-light-9: rgba(var(--plt-basic-color-primary), 0.1);
+  /* 文本色 */
+  --plt-basic-color-text-main: #1a1a1a; // 主要文本色
+  --plt-basic-color-text-normal: #333333; // 次要文本色
+  --plt-basic-color-text-minor-dark: #666666; // 次要文本色
+  --plt-basic-color-text-minor-light: #999999; // 次要文本色
+  --plt-basic-color-text-explain: #cccccc; // 说明性文本色
 
+  /* 边框色 */
+  --plt-basic-border-color-main: #d6d6d6;
+  --plt-basic-border-color-minor: #e5e5e5;
+
+  /* 主题色变换，透明度稀释变浅 */
+  --plt-basic-color-primary-light-1: rgba(var(--plt-basic-color-primary-rgb), 0.9);
+  --plt-basic-color-primary-light-2: rgba(var(--plt-basic-color-primary-rgb), 0.8);
+  --plt-basic-color-primary-light-3: rgba(var(--plt-basic-color-primary-rgb), 0.7);
+  --plt-basic-color-primary-light-4: rgba(var(--plt-basic-color-primary-rgb), 0.6);
+  --plt-basic-color-primary-light-5: rgba(var(--plt-basic-color-primary-rgb), 0.5);
+  --plt-basic-color-primary-light-6: rgba(var(--plt-basic-color-primary-rgb), 0.4);
+  --plt-basic-color-primary-light-7: rgba(var(--plt-basic-color-primary-rgb), 0.3);
+  --plt-basic-color-primary-light-8: rgba(var(--plt-basic-color-primary-rgb), 0.2);
+  --plt-basic-color-primary-light-9: rgba(var(--plt-basic-color-primary-rgb), 0.1);
+
+  /**
+    ===================================
+    基础样式设置 --plt-basic-*
+    ===================================
+    */
+
+  /* 外边距 */
+  --plt-basic-margin-xs: 4px;
+  --plt-basic-margin-s: 8px;
+  --plt-basic-margin-m: 12px;
+  --plt-basic-margin-l: 16px;
+  --plt-basic-margin-xl: 24px;
+  --plt-basic-margin-xxl: 32px;
+  --plt-basic-margin-common: var(--plt-basic-margin-s);
+
+  /* 内边距 */
+  --plt-basic-padding-xs: 4px;
+  --plt-basic-padding-s: 8px;
+  --plt-basic-padding-m: 12px;
+  --plt-basic-padding-l: 16px;
+  --plt-basic-padding-xl: 24px;
+  --plt-basic-padding-xxl: 32px;
+  --plt-basic-padding-xxxl: 48px;
+  --plt-basic-padding-common: var(--plt-basic-padding-s);
+
+  /* 圆角 */
+  --plt-basic-radius-xs: 2px;
+  --plt-basic-radius-s: 4px;
+  --plt-basic-radius-m: 8px;
+  --plt-basic-radius-l: 16px;
+  --plt-basic-radius-common: var(--plt-basic-radius-s);
+
+  /* 字体大小 */
+  --plt-basic-font-size-xxs: 12px;
+  --plt-basic-font-size-xs: 14px;
+  --plt-basic-font-size-s: 15px;
+  --plt-basic-font-size-ms: 16px;
+  --plt-basic-font-size-m: 18px;
+  --plt-basic-font-size-l: 20px;
+  --plt-basic-font-size-common: var(--plt-basic-font-size-xs);
+
+  /* 图标大小*/
+  --plt-basic-icon-size-common: 14px;
+  --plt-basic-icon-size-btn: 16px;
+  --plt-basic-icon-size-menu: 18px;
+  --plt-basic-icon-size-header: 22px;
+
+  /**
+    ===================================
+    菜单样式设置 --plt-menu-*
+    ===================================
+    */
+  --plt-menu-row-height: 42px; // 菜单行高
+  --plt-menu-font-color: var(--plt-basic-color-text-normal);
+  --plt-menu-icon-right-paddding: 10px; // 菜单图标和右侧文字的间距
+  --plt-menu-background-color: #fff; // 菜单背景色，不跟随主题色，为单独设置的值
 }

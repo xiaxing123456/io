@@ -1,14 +1,4 @@
 import { treeToList } from '@io-platform/core-common';
-import PltVirtuallyList from '../../../../plt-virtually-list/plt-virtually-list';
-import type {
-  ITreeInfo,
-  ITreeNode,
-  ITreeOptionProps,
-  TreeData,
-  TreeKey,
-  TreeNodeData,
-} from '../../type';
-import { useFilter } from '../use-filter';
 import { useEventListener } from '@vueuse/core';
 import { debounce } from 'lodash-es';
 import {
@@ -24,6 +14,16 @@ import {
   watch,
 } from 'vue';
 import { useRouter } from 'vue-router';
+import PltVirtuallyList from '../../../../plt-virtually-list/plt-virtually-list';
+import type {
+  ITreeInfo,
+  ITreeNode,
+  ITreeOptionProps,
+  TreeData,
+  TreeKey,
+  TreeNodeData,
+} from '../../type';
+import { useFilter } from '../use-filter';
 
 // enums
 export enum TreeOptionsEnum {
@@ -67,12 +67,12 @@ export const treeProps = {
   /** 相邻级节点间的水平缩进，单位为像素 */
   indent: {
     type: Number,
-    default: 16,
+    default: 32,
   },
   /** 元素最小高度 */
   minSize: {
     type: Number,
-    default: 10,
+    default: 42,
   },
   /** 是否在点击节点的时候展开或者收缩节点 */
   expandOnClickNode: {
@@ -436,16 +436,17 @@ export const useTree = (props: TreeProps, emits: SetupContext<typeof TreeEmits>[
    */
   const onClickTreeNode = async (node: ITreeNode, e: MouseEvent) => {
     const oldPath = router.currentRoute.value.fullPath;
+    const shouldNavigate = props.router && node.path;
 
     // 如果当前启用router跳转，则会使用节点path数据进行跳转
-    if (props.router && node.path) {
+    if (shouldNavigate) {
       await router.push(node.path as string);
     }
 
     const currentPath = router.currentRoute.value.fullPath;
 
     /** 如果路由没有发生变化，则不处理 */
-    if (oldPath === currentPath && node.path) return;
+    if (shouldNavigate && oldPath === currentPath) return;
 
     /**
      * 根据配置，在节点点击时是否展开或折叠节点

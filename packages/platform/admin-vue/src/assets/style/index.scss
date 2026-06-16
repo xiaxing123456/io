@@ -1,5 +1,7 @@
-@use './basic.scss';
 @use './basic-var.css';
+@use './basic.scss';
+@use './global-class.scss';
 @use './icon.scss';
 @use 'element-plus/dist/index.css';
 @use './override/element-plus-override.css';
+@import url('@io-platform/core-ui/src/styles/index.scss');

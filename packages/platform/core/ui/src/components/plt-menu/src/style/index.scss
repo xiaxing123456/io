@@ -1,222 +1,244 @@
 .plt-menu {
-    position: relative;
-    height: 100%;
-    color: var(--plt-menu-font-color, var(--plt-basic-color-text-normal));
+  position: relative;
+  margin: 0;
+  padding-left: 0;
+  background-color: rgb(from var(--plt-menu-background-color) r g b / 1);
+  box-sizing: border-box;
+  height: 100%;
 
-    .highlight {
-        color: red;
+  .plt-virtually-list__client {
+    width: 100%;
+    scrollbar-gutter: stable;
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      width: 6px;
     }
 
-    svg {
-        height: 20px !important;
-        width: 20px !important;
-        vertical-align: -2px !important;
-    }
-
-    .virtually-list__client {
-        width: 100%;
-        height: 100%;
-        overflow-y: auto;
-        scrollbar-gutter: stable;
-    }
-
-    .virtually-menu-item {
+    .virtually-menu-container {
+      // 根节点样式
+      .virtually-menu-item {
+        position: relative;
+        box-sizing: border-box;
         padding-left: var(--plt-menu-icon-right-paddding);
-        border-left: 6px solid transparent;
-        &:hover {
-            background-color: rgba(var(--plt-basic-color-primary), 0.1) !important;
-            color: var(--plt-basic-color-primary-16) !important;
-            border-left: 6px solid var(--plt-basic-color-primary-16);
-        }
-    }
+        color: var(--plt-menu-font-color, var(--plt-basic-color-text-normal));
 
-    .virtually-tree-item-container {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        height: var(--plt-menu-row-height);
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          width: 6px;
+          background-color: transparent;
+        }
+
         &:hover {
+          background-color: var(--plt-basic-color-primary-light-9);
+          &::before {
+            background-color: var(--plt-basic-color-primary-16);
+          }
+        }
+
+        // 树节点容器样式
+        .virtually-tree-item-container {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          height: var(--plt-menu-row-height);
+          &:hover {
             .margin-right {
-                width: calc(100% - 28px);
+              width: calc(100% - 28px);
             }
 
             .right-icon {
-                display: block;
+              display: block;
             }
-        }
-    }
+          }
 
-    .virtually-tree-item-container-collapse {
-        display: flex;
-        flex-direction: column;
-        height: auto;
-        margin-left: -8px;
-        padding-bottom: var(--plt-basic-padding-s);
-
-        .virtually-tree-node-content {
-            line-height: 20px;
-        }
-
-        .icon {
-        }
-
-        .oth {
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2; /* 限制显示两行 */
-            overflow: hidden;
-            text-overflow: ellipsis;
-            word-break: break-word; /* 允许单词在行内换行 */
-            white-space: inherit;
-            text-align: center;
-        }
-    }
-
-    .virtually-tree-item-container > .virtually-tree-icon {
-        transition: all 0.5s ease;
-        margin-left: auto;
-        margin-right: 4px;
-        font-size: var(--plt-basic-font-size-ms);
-        color: var(--plt-menu-font-color, var(--plt-basic-color-text-normal));
-    }
-    .virtually-tree-icon.virtually-tree-icon--expanded {
-        transform: rotate(180deg);
-    }
-    .virtually-tree-node-content {
-        flex: 1;
-        height: 100%;
-        display: flex;
-        line-height: var(--plt-menu-row-height);
-        color: var(--plt-menu-font-color, var(--plt-basic-color-text-normal));
-    }
-
-    @keyframes slideInFromLeft {
-        0% {
-            transform: scale(0);
-        }
-        100% {
-            transform: scale(1);
-        }
-    }
-
-    .menu-collapse {
-        .virtually-tree-item-container {
+          // 树节点内容样式
+          .virtually-tree-node-content {
+            flex: 1;
+            height: 100%;
             display: flex;
-            justify-content: center;
-        }
-    }
-}
+            line-height: var(--plt-menu-row-height);
+            color: var(--plt-menu-font-color, var(--plt-basic-color-text-normal));
+          }
 
-.virtually-tree-item-container--current,
-.virtually-tree-collapse-item-container--current {
-    background-color: rgba(var(--plt-basic-color-primary), 0.1) !important;
-    color: var(--plt-basic-color-primary-16) !important;
-    border-left: 6px solid var(--plt-basic-color-primary-16) !important;
+          // 树节点展开图标样式
+          .virtually-tree-icon {
+            transition: all 0.5s ease;
+            margin-left: auto;
+            margin-right: 4px;
+            font-size: var(--plt-basic-font-size-ms);
+            color: var(--plt-menu-font-color, var(--plt-basic-color-text-normal));
+          }
+
+          // 树节点图标样式
+          .virtually-tree-icon.virtually-tree-icon--expanded {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      // 当前选中节点
+      .virtually-menu-item.virtually-tree-item-container--current {
+        background-color: var(--plt-basic-color-primary-light-9);
+        &::before {
+          background-color: var(--plt-basic-color-primary-16);
+        }
+      }
+    }
+  }
+
+  svg {
+    height: 20px !important;
+    width: 20px !important;
+    vertical-align: -2px !important;
+  }
+
+  .virtually-tree-item-container-collapse {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin-left: -8px;
+    padding-bottom: var(--plt-basic-padding-s);
+
+    .virtually-tree-node-content {
+      line-height: 20px;
+    }
+
+    .icon {
+    }
+
+    .oth {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2; /* 限制显示两行 */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: break-word; /* 允许单词在行内换行 */
+      white-space: inherit;
+      text-align: center;
+    }
+  }
+
+  @keyframes slideInFromLeft {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .menu-collapse {
+    .virtually-tree-item-container {
+      display: flex;
+      justify-content: center;
+    }
+  }
 }
 
 .collapse-animation,
 .submenu {
-    border: 1px solid var(--plt-basic-border-color-minor);
-    box-shadow: var(--el-box-shadow-light);
+  border: 1px solid var(--plt-basic-border-color-minor);
+  box-shadow: var(--el-box-shadow-light);
 }
 
 .collapse-animation {
+  position: absolute;
+  transform-origin: left top;
+  z-index: 9999;
+  margin-left: var(--plt-basic-margin-s);
+  box-sizing: content-box;
+
+  .submenu {
     position: absolute;
-    transform-origin: left top;
     z-index: 9999;
-    margin-left: var(--plt-basic-margin-s);
+    transform-origin: left top;
     box-sizing: content-box;
+    border-radius: var(--plt-basic-radius-s);
+    animation: slideInFromLeft 0.3s ease-out forwards;
 
-    .submenu {
-        position: absolute;
-        z-index: 9999;
-        transform-origin: left top;
-        box-sizing: content-box;
-        border-radius: var(--plt-basic-radius-s);
-        animation: slideInFromLeft 0.3s ease-out forwards;
+    left: 100%;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+    transform: scale(1);
+    background: var(--plt-menu-background-color);
+  }
 
-        left: 100%;
-        transition: opacity 0.3s ease;
-        opacity: 1;
-        transform: scale(1);
-        background: var(--plt-menu-background-color);
+  .icon-plt-rig_Light {
+    transition: transform 0.3s ease;
+    margin-left: auto;
+    margin-right: var(--plt-basic-margin-m);
+    position: absolute;
+    right: 0;
+  }
+
+  .rotate-icon {
+    transform: rotate(180deg);
+  }
+
+  .cascader-menu {
+    position: relative;
+    height: 100%;
+    background: rgb(from var(--plt-menu-background-color) r g b / 1);
+  }
+
+  .virtually-list__client {
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .cascader-item {
+    cursor: pointer;
+    height: var(--plt-menu-row-height);
+    display: flex;
+    align-items: center;
+    border-left: 6px solid transparent;
+    padding: 0 var(--plt-basic-padding-s);
+    position: relative;
+    &:hover {
+      background-color: var(--plt-basic-color-primary-light-9) !important;
+      color: var(--plt-basic-color-primary) !important;
+      border-left: 6px solid var(--plt-basic-color-primary);
     }
 
-    .icon-plt-rig_Light {
-        transition: transform 0.3s ease;
-        margin-left: auto;
-        margin-right: var(--plt-basic-margin-m);
-        position: absolute;
-        right: 0;
+    .item-label {
+      margin-right: var(--plt-basic-margin-xl);
+      font-size: var(--plt-basic-font-size-xs);
+      color: var(--plt-menu-font-color, var(--plt-basic-color-text-normal));
     }
-
-    .rotate-icon {
-        transform: rotate(180deg);
-    }
-
-    .cascader-menu {
-        position: relative;
-        height: 100%;
-        background: rgb(from var(--plt-menu-background-color) r g b / 1);
-    }
-
-    .virtually-menu-container {
-        background: rgb(from var(--plt-menu-background-color) r g b / 1);
-    }
-
-    .virtually-list__client {
-        height: 100%;
-        overflow-y: auto;
-    }
-
-    .cascader-item {
-        cursor: pointer;
-        height: var(--plt-menu-row-height);
-        display: flex;
-        align-items: center;
-        border-left: 6px solid transparent;
-        padding: 0 var(--plt-basic-padding-s);
-        position: relative;
-        &:hover {
-            background-color: rgba(var(--plt-basic-color-primary), 0.1) !important;
-            color: var(--plt-basic-color-primary-16) !important;
-            border-left: 6px solid var(--plt-basic-color-primary-16);
-        }
-
-        .item-label {
-            margin-right: var(--plt-basic-margin-xl);
-            font-size: var(--plt-basic-font-size-xs);
-            color: var(--plt-menu-font-color, var(--plt-basic-color-text-normal));
-        }
-    }
+  }
 }
 .collapse-fade-enter-active,
 .collapse-fade-leave-active {
-    transition: all 0.3s;
+  transition: all 0.3s;
 }
 .collapse-fade-enter-from,
 .collapse-fade-leave-to {
-    opacity: 0;
-    transform: scale(0);
+  opacity: 0;
+  transform: scale(0);
 }
 .collapse-fade-enter-to,
 .collapse-fade-leave-from {
-    opacity: 1;
-    transform: scale(1);
+  opacity: 1;
+  transform: scale(1);
 }
 
 .el-popper.menu-tooltip {
-    background-color: var(--plt-menu-background-color) !important;
-    box-shadow: var(--el-box-shadow-light) !important;
-    font-size: var(--plt-basic-font-size-xs) !important;
-    border-radius: var(--plt-basic-radius-s);
+  background-color: var(--plt-menu-background-color) !important;
+  box-shadow: var(--el-box-shadow-light) !important;
+  font-size: var(--plt-basic-font-size-xs) !important;
+  border-radius: var(--plt-basic-radius-s);
 
-    .el-popper__arrow {
-        display: none;
-    }
+  .el-popper__arrow {
+    display: none;
+  }
 }
 
 .cascader-tooltip {
-    z-index: 9999 !important;
+  z-index: 9999 !important;
 }
