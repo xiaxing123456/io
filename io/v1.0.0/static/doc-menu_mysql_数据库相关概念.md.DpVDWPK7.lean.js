@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as a}from"./chunks/framework.BBJce6hm.js";const i=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"doc-menu/mysql/数据库相关概念.md","filePath":"doc-menu/mysql/数据库相关概念.md"}'),o={name:"doc-menu/mysql/数据库相关概念.md"};function s(c,n,r,_,m,d){return t(),a("div")}const l=e(o,[["render",s]]);export{i as __pageData,l as default};
