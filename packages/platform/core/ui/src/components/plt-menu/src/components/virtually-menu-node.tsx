@@ -4,7 +4,7 @@ import {
   highlightTextInNode,
   replaceVNodeByClass,
 } from '../../../plt-tree/helper';
-import type { ITreeNode } from '../type';
+import type { ITreeNode } from '../../../../types/plt-menu/plt-menu';
 
 // 定义 treeNodeProps 属性，用于接收树节点相关的配置信息
 export const treeNodeProps = {

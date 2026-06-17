@@ -1,23 +1,23 @@
 {
-  "auth": {
-    "login": "login",
-    "register": "注册",
-    "codeLogin": "验证码登录",
-    "qrcodeLogin": "二维码登录",
-    "forgetPassword": "忘记密码",
-    "profile": "个人中心"
-  },
-  "login": {
-    "welcomeBack": "Welcome back",
-    "subtitle": "Log in to manage your game projects and tutorials",
-    "usernameLabel": "Username / Phone",
-    "usernamePlaceholder": "Enter your account",
-    "passwordLabel": "Password",
-    "codeLabel": "Captcha",
-    "codePlaceholder": "Enter captcha",
-    "refreshCaptcha": "Click to refresh captcha",
-    "passwordPlaceholder": "Enter password",
-    "loginButton": "Log in now",
-    "thirdPartyLogin": "Quick third-party login"
+  "admin-vue": {
+    "message": {
+      "span_error_placeholder_input": "请输入"
+    },
+    "main_page": {
+      "regionalFormat": "地区格式2"
+    },
+    "login_page": {
+      "welcomeBack": "欢迎回来",
+      "subtitle": "立即登录以管理您的游戏项目和教程",
+      "usernameLabel": "用户名/手机号",
+      "usernamePlaceholder": "请输入您的账户",
+      "passwordLabel": "密码",
+      "codeLabel": "验证码",
+      "codePlaceholder": "请输入验证码",
+      "refreshCaptcha": "点击刷新验证码",
+      "passwordPlaceholder": "请输入密码",
+      "loginButton": "立即登录",
+      "thirdPartyLogin": "第三方快捷登录"
+    }
   }
 }

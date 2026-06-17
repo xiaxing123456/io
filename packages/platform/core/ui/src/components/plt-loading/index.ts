@@ -17,4 +17,4 @@ export type {
     LoadingOptions,
     LoadingParentElement,
     LoadingTarget,
-} from './src/plt-loading.types';
+} from '../../types/plt-loading/plt-loading';

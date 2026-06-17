@@ -2,7 +2,7 @@
     "extends": "@io-platform/dev-config/tsconfig/tsconfig",
     "compilerOptions": {
         "rootDir": "./src",
-        "types": ["vite/client"]
+        "types": ["vite/client","element-plus/global"]
     },
     "include": [
         "src/**/*.ts",

@@ -1,4 +1,4 @@
-import type { ITreeNode } from '../../type';
+import type { ITreeNode } from '../../../../../types/plt-menu/plt-menu';
 
 // 使用单例模式的测量 span，避免重复创建 DOM 元素
 let globalMeasureSpan: HTMLSpanElement | null = null;

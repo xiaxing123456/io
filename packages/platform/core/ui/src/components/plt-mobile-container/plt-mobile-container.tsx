@@ -25,7 +25,7 @@ import type {
   PltMobileContainerResizedPayload,
   PltMobileContainerSize,
   PltMobileContainerSlotScope,
-} from './plt-mobile-container.type';
+} from '../../types/plt-mobile-container/plt-mobile-container';
 import 'splitpanes/dist/splitpanes.css';
 import './plt-mobile-container.scss';
 

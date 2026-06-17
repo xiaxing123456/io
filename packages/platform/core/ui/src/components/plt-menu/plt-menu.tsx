@@ -3,7 +3,7 @@ import CascaderMenu from './src/components/cascader-menu';
 import MenuNode from './src/components/virtually-menu-node';
 import { treeProps, type TreeProps, useTree } from './src/composables/use-tree';
 import './src/style/index.scss';
-import type { ITreeNode } from './src/type';
+import type { ITreeNode } from '../../types/plt-menu/plt-menu';
 import { calculateMenuPosition } from './src/util';
 import { defineComponent, h, Teleport, Transition } from 'vue';
 

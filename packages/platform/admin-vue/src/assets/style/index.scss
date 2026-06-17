@@ -2,6 +2,9 @@
 @use './basic.scss';
 @use './global-class.scss';
 @use './icon.scss';
+// element-plus
 @use 'element-plus/dist/index.css';
 @use './override/element-plus-override.css';
+
+// io-platform/core-ui
 @import url('@io-platform/core-ui/src/styles/index.scss');

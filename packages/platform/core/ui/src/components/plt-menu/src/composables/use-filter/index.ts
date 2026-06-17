@@ -1,4 +1,4 @@
-import type { ITreeInfo, ITreeNode, TreeKey } from '../../type';
+import type { ITreeInfo, ITreeNode, TreeKey } from '../../../../../types/plt-menu/plt-menu';
 import type { TreeProps } from '../use-tree';
 import { computed, shallowRef, ShallowRef, triggerRef } from 'vue';
 

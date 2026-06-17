@@ -12,7 +12,7 @@ import type {
   PltRowId,
   PltTreeRowData,
   PltTreeRowDataKey,
-} from './plt-tree.types';
+} from '../../types/plt-tree/plt-tree';
 import { useResizeObserver } from '@vueuse/core';
 import { cloneDeep, debounce, findIndex, pullAt } from 'lodash-es';
 import Sortable from 'sortablejs';

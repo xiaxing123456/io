@@ -18,7 +18,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "type-check": "vue-tsc -p tsconfig.json --noEmit",
-    "type": "vue-tsc -p tsconfig.build.json",
+    "type": "vue-tsc -p tsconfig.build.json && node ./scripts/copy-type-declarations.mjs",
     "build": "pnpm clean && pnpm type-check && vite build && pnpm type"
   },
   "peerDependencies": {

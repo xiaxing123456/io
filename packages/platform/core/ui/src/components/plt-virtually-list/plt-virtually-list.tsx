@@ -1,6 +1,6 @@
 import PltObserverItem from '../plt-observer-item/plt-observer-item';
 import { useVirtuallyList } from './composables/use-virtually-list';
-import type { EmitFunction } from './plt-virtually-list.type';
+import type { EmitFunction } from '../../types/plt-virtually-list/plt-virtually-list';
 import { defineComponent, h } from 'vue';
 
 export default defineComponent({

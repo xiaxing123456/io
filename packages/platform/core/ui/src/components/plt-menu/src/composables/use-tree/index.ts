@@ -22,7 +22,7 @@ import type {
   TreeData,
   TreeKey,
   TreeNodeData,
-} from '../../type';
+} from '../../../../../types/plt-menu/plt-menu';
 import { useFilter } from '../use-filter';
 
 // enums

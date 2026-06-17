@@ -11,6 +11,11 @@ export interface ILoginForm {
   codeKey: string;
 }
 
+/** 获取验证码 */
+export const generateValidateCode = () => {
+  return reqGet(`${envMicrServices.managerServer}/user/generateValidateCode`);
+};
+
 /** 登录 */
 export const login = async (data: ILoginForm) => {
   return reqPost(`${envMicrServices.managerServer}/user/login`, data, {
@@ -18,7 +23,7 @@ export const login = async (data: ILoginForm) => {
   });
 };
 
-/** 获取验证码 */
-export const generateValidateCode = () => {
-  return reqGet(`${envMicrServices.managerServer}/user/generateValidateCode`);
+/** 退出登录 */
+export const logout = async (id: number) => {
+  return reqGet(`${envMicrServices.managerServer}/user/logout/${id}`);
 };

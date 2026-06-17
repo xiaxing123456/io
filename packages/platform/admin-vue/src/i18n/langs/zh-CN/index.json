@@ -3,6 +3,9 @@
     "message": {
       "span_error_placeholder_input": "请输入"
     },
+    "main_page": {
+      "regionalFormat": "地区格式"
+    },
     "login_page": {
       "welcomeBack": "欢迎回来",
       "subtitle": "立即登录以管理您的游戏项目和教程",

@@ -5,7 +5,7 @@ import type {
   SlotSize,
   VirtListProps,
   VirtListReturn,
-} from '../plt-virtually-list.type';
+} from '../../../types/plt-virtually-list/plt-virtually-list';
 import { useEventListener } from '@vueuse/core';
 import {
   computed,

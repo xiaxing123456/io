@@ -16,7 +16,7 @@ import type {
   LoadingParentState,
   LoadingTarget,
   NormalizedLoadingOptions,
-} from './plt-loading.types';
+} from '../../../types/plt-loading/plt-loading';
 
 const globalState: LoadingGlobalState = {
   fullscreenLoading: null,

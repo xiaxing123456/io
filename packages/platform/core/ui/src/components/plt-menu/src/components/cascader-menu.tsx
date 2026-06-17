@@ -1,7 +1,7 @@
 import { computed, defineComponent, h, nextTick, onMounted, PropType, ref } from 'vue';
 import PltVirtuallyList from '../../../plt-virtually-list/plt-virtually-list';
 import { useTextWidth } from '../composables/use-text-width';
-import type { ITreeNode } from '../type';
+import type { ITreeNode } from '../../../../types/plt-menu/plt-menu';
 import { calculateMenuPosition } from '../util';
 
 export default defineComponent({

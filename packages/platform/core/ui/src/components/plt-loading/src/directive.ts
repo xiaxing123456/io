@@ -1,7 +1,7 @@
 import type { DirectiveBinding, ObjectDirective } from 'vue';
 import { instanceName } from './constants';
 import Loading from './index';
-import type { LoadingInstance } from './plt-loading.types';
+import type { LoadingInstance } from '../../../types/plt-loading/plt-loading';
 
 /** 带有 loading 实例缓存的指令元素。 */
 export interface ElementLoading extends HTMLElement {

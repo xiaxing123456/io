@@ -1,4 +1,4 @@
-import type { PltTreeRowData } from './plt-tree.types';
+import type { PltTreeRowData } from '../../types/plt-tree/plt-tree';
 import { Comment, defineComponent, h, VNode } from 'vue';
 
 /**

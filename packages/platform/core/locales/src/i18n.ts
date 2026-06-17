@@ -122,4 +122,4 @@ const setupI18n = async (app: App, options: LocaleSetupOptions = {}) => {
   await loadLocaleMessages(defaultLocale);
 };
 
-export { i18n, setupI18n };
+export { i18n, loadLocaleMessages, setupI18n };

@@ -77,6 +77,15 @@
   --plt-basic-font-size-l: 20px;
   --plt-basic-font-size-common: var(--plt-basic-font-size-xs);
 
+  /* 文字粗细 */
+  --plt-basic-font-weight-light: 350;
+  --plt-basic-font-weight-normal: 400;
+  --plt-basic-font-weight-regular: 450;
+  --plt-basic-font-weight-medium: 500;
+  --plt-basic-font-weight-bold: 600;
+  --plt-basic-font-weight-heavy: 650;
+  --plt-basic-font-weight-bolder: 700;
+
   /* 图标大小*/
   --plt-basic-icon-size-common: 14px;
   --plt-basic-icon-size-btn: 16px;
@@ -91,5 +100,5 @@
   --plt-menu-row-height: 42px; // 菜单行高
   --plt-menu-font-color: var(--plt-basic-color-text-normal);
   --plt-menu-icon-right-paddding: 10px; // 菜单图标和右侧文字的间距
-  --plt-menu-background-color: #fff; // 菜单背景色，不跟随主题色，为单独设置的值
+  --plt-menu-background-color: #f2f6ff; // 菜单背景色，不跟随主题色，为单独设置的值
 }
