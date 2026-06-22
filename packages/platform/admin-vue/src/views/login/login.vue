@@ -185,7 +185,9 @@ const submitLogin = useApi(async () => {
       codeKey: formData.codeKey,
     };
     await userAccess.login(params);
-  } catch (error) {}
+  } catch (error) {
+    logger.error(error);
+  }
 }, loginPageRef).fetchResource;
 
 /** 获取或者更新验证码 */

@@ -51,7 +51,6 @@ export class RequestCancellationManager {
       },
       timestamp: Date.now(),
     });
-    console.log('attachCancellation', config);
   }
 
   /** 注册请求 */
@@ -96,7 +95,6 @@ export class RequestCancellationManager {
 
   /** 移除请求 */
   public cancelRequestsByKey(cancelKey: string) {
-    console.log('cancelRequestsByKey', cancelKey, this.pendingRequestIdsByKey);
     const requestIds = this.pendingRequestIdsByKey.get(cancelKey);
     if (!requestIds) return;
 
@@ -114,7 +112,6 @@ export class RequestCancellationManager {
       this.removeFromIndex(this.pendingRequestIdsByKey, pendingRequest.cancelKey, requestId);
       this.removeFromIndex(this.pendingRequestIdsByScope, pendingRequest.scopeId, requestId);
     });
-    console.warn(message);
   }
 
   /** 请求完成后移除 pending 请求 */

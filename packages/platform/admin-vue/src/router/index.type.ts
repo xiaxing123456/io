@@ -10,6 +10,14 @@ export interface RouteMetaCustomizeOptions extends Record<string, any> {
    * - 该配置是忽略记录某些路由
    */
   isIgnoreHistory?: boolean;
+  /** 不进入 tabs-bar，例如登录页 */
+  hiddenTab?: boolean;
+  /** 固定标签，例如首页 */
+  affix?: boolean;
+  /** 是否缓存页面 */
+  keepAlive?: boolean;
+  /** 自定义 tab 标题，不配置则使用 route.meta.title */
+  tabTitle?: string;
 }
 
 export interface UseRouteGuardOptions {
@@ -21,4 +29,6 @@ export interface UseRouteGuardOptions {
   beforeResolve?: NavigationGuardWithThis<undefined>;
   /** 路由前置守卫里面的钩子 */
   beforeEachFnHook?: (data: AnyObj) => Promise<{ isDone: boolean }>;
+  /** 路由后置钩子里面的钩子 */
+  afterEachHook?: (data: AnyObj) => Promise<{ isDone: boolean }>;
 }

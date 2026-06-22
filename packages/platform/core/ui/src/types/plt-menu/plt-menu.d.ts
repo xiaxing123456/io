@@ -12,6 +12,8 @@ export interface ITreeOptionProps {
   label?: string;
   /** 值的字段名 */
   value?: string;
+  /** 路径的字段名 */
+  path?: string;
 }
 
 /** 树节点 */

@@ -131,6 +131,16 @@ interface AddPropertyForTreeOptions {
     isCopy?: boolean;
 }
 
+interface UpdateTreeNodeForTreeOptions<
+    T extends Record<string, any> = Record<string, any>,
+    TreeNode extends T | T[] = T | T[],
+> {
+    treeNode: TreeNode;
+    updateNode: (node: T) => T;
+    childrenKey?: string;
+    isCopy?: boolean;
+}
+
 /**
  * 为树形数据新增key value (原 keyValue会被替换, 该方法会更改源数据，不需要更改请copy后再使用此方法或者使用isCopy)
  * @param treeNode - 树节点
@@ -163,6 +173,43 @@ export const addPropertyForTree = ({
     }
 
     return treeNode;
+};
+
+/**
+ * 更新树形数据节点 (该方法会更改源数据，不需要更改请copy后再使用此方法或者使用isCopy)
+ * @param treeNode - 树节点
+ * @param updateNode - 节点更新方法，入参是节点信息，出参是更新后的节点信息
+ * @param childrenKey - 子节点key
+ * @returns
+ */
+export const updateTreeNodeForTree = <
+    T extends Record<string, any> = Record<string, any>,
+    TreeNode extends T | T[] = T | T[],
+>({
+    treeNode,
+    updateNode,
+    childrenKey,
+    isCopy,
+}: UpdateTreeNodeForTreeOptions<T, TreeNode>): TreeNode => {
+    if (!treeNode) return treeNode;
+
+    const result = isCopy ? cloneDeep(treeNode) : treeNode;
+    const stack = Array.isArray(result) ? [...result] : [result];
+    const $_childrenKey = childrenKey || 'children';
+
+    while (stack?.length) {
+        const currentNode = stack.pop() || ({} as T);
+        const currentNodeChildren = currentNode?.[$_childrenKey] as T[] | undefined;
+        const updatedNode = updateNode(currentNode);
+
+        Object.assign(currentNode, updatedNode);
+
+        if (currentNodeChildren?.length) {
+            stack.push(...currentNodeChildren);
+        }
+    }
+
+    return result;
 };
 
 /**

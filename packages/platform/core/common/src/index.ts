@@ -99,6 +99,7 @@ export {
     findTreeToList,
     FindTreeToListMatchTypeEnum,
     addPropertyForTree,
+    updateTreeNodeForTree,
     listToTree,
     filterNode,
     scrollToTop,

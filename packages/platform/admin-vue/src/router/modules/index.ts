@@ -17,5 +17,31 @@ export const routers: RouteRecordRaw[] = [
     path: '/',
     name: 'Main',
     component: viewComponent.Main,
+    children: [
+      {
+        path: '/homepage-company',
+        name: 'homepage-company',
+        component: viewComponent.CompanyHomepage,
+        meta: {
+          title: '首页',
+          [RouteMetaCustomizeOpsKey.Name]: {
+            affix: true,
+            keepAlive: true,
+          },
+        },
+      },
+      {
+        path: '/company-user',
+        name: 'company-user',
+        component: viewComponent.CompanyUser,
+        meta: { title: '公司用户' },
+      },
+      {
+        path: '/company-role',
+        name: 'company-role',
+        component: viewComponent.CompanyRole,
+        meta: { title: '公司角色' },
+      },
+    ],
   },
 ];

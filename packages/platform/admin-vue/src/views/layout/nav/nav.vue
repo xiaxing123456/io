@@ -1,51 +1,39 @@
 <template>
-  <aside class="nav">
+  <aside class="app-nav">
+    <div class="company-logo">
+      <img />
+    </div>
+    <div class="company-name">
+      <span>AgentiCenter PCM</span>
+    </div>
     <div class="nav-box">
-      <app-menu ref="menuRef" @add-loading="addLoading" />
+      <app-menu
+        v-if="currentMenuList.length"
+        :menu-data="currentMenuList"
+        :menu-props="menuOptionsProps"
+        :menu-default-active="menuDefaultActive"
+      ></app-menu>
     </div>
   </aside>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import AppMenu from '@admin-vue/views/layout/sidebar/menu/menu.vue';
-import { defineComponent, PropType, ref } from 'vue';
 
-export default defineComponent({
+import { nav } from '@admin-vue/views/layout/nav/nav';
+defineOptions({
   name: 'AppNav',
-  components: { AppMenu },
-  props: {
-    menuData: {
-      type: Object as PropType<AnyObj>,
-      default: () => ({}),
-    },
-  },
-  emits: ['add-loading'],
-  setup(props, { emit }) {
-    /** 将父组件添加loading的回调传递给子组件 */
-    const addLoading = () => {
-      emit('add-loading');
-    };
-    const menuRef = ref();
-    const expandAll = (searchValue: string) => {
-      menuRef.value.expandAll(searchValue);
-    };
-    return { addLoading, menuRef, expandAll };
-  },
 });
+
+const { currentMenuList, menuOptionsProps, menuDefaultActive } = nav();
 </script>
 <style lang="scss" scoped>
-.nav {
-  flex: 1;
-  position: relative;
-  width: 100%;
-  padding-right: 2px;
-  box-sizing: border-box;
-  // @include backgroundColor();
-  overflow: auto;
+.app-nav {
+  height: 100%;
+  background-color: var(--plt-menu-background-color);
   &-box {
     height: 100%;
     overflow: auto;
-    // margin-right: 1px;
   }
 }
 </style>

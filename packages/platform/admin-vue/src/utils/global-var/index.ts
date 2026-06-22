@@ -4,7 +4,7 @@ import { generateCustomizeLogger } from '@admin-vue/utils/logger';
  * - 所有全局变量从此入口挂载
  */
 const mountGlobalVar = () => {
-    window.logger = generateCustomizeLogger();
+  window.logger = generateCustomizeLogger();
 };
 
 mountGlobalVar();

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/cjs/index.js",
-  "module": "dist/ems/index.js",
+  "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.json && tsc -p tsconfig.cjs.json"

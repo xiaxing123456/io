@@ -2,16 +2,12 @@
  * @zh_CN Pinia 模块名
  */
 export enum PiniaName {
-  /**
-   * @zh_CN 核心权限模块
-   */
+  /** 核心权限模块 */
   CoreAccess = 'core-access',
-  /**
-   * @zh_CN 用户模块
-   */
+  /** 用户模块 */
   UserAccess = 'user-access',
-  /**
-   * @zh_CN 路由模块
-   */
+  /** 路由模块 */
   Routers = 'routers',
+  /** 系统资源模块 */
+  SystemModuleAccess = 'system-module-access',
 }

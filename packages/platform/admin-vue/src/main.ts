@@ -8,6 +8,9 @@ import App from './App.vue';
 // styles
 import '@admin-vue/assets/style/index.scss';
 
+// mock
+import '@admin-vue/apis/moke';
+
 const app = createApp(App);
 
 const installAll = async () => {

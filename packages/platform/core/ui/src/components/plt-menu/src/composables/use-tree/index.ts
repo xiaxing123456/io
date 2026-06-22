@@ -14,7 +14,6 @@ import {
   watch,
 } from 'vue';
 import { useRouter } from 'vue-router';
-import PltVirtuallyList from '../../../../plt-virtually-list/plt-virtually-list';
 import type {
   ITreeInfo,
   ITreeNode,
@@ -23,6 +22,7 @@ import type {
   TreeKey,
   TreeNodeData,
 } from '../../../../../types/plt-menu/plt-menu';
+import PltVirtuallyList from '../../../../plt-virtually-list/plt-virtually-list';
 import { useFilter } from '../use-filter';
 
 // enums
@@ -30,6 +30,7 @@ export enum TreeOptionsEnum {
   KEY = 'id',
   LABEL = 'label',
   CHILDREN = 'children',
+  PATH = 'path',
 }
 
 // emits
@@ -57,7 +58,7 @@ export const treeProps = {
   /** 配置选项 */
   fieldNames: {
     type: Object as PropType<ITreeOptionProps>,
-    default: () => ({ children: 'children', label: 'label', value: 'value' }),
+    default: () => ({ children: 'children', label: 'label', value: 'value', path: 'path' }),
   },
   /** 默认展开节点 */
   defaultExpandedKeys: {
@@ -153,6 +154,9 @@ export const useTree = (props: TreeProps, emits: SetupContext<typeof TreeEmits>[
   const labelKey = computed(() => {
     return props.fieldNames?.label || TreeOptionsEnum.LABEL;
   });
+  const pathKey = computed(() => {
+    return props.fieldNames?.path || TreeOptionsEnum.PATH;
+  });
 
   /** 扁平化树数据 */
   const flattenTree = computed(() => treeToList(tree.value?.treeNodes || [], childrenKey.value));
@@ -160,6 +164,7 @@ export const useTree = (props: TreeProps, emits: SetupContext<typeof TreeEmits>[
   const getKey = (node: TreeNodeData): TreeKey => (node ? node[valueKey.value] : '');
   const getChildren = (node: TreeNodeData): TreeNodeData[] => (node ? node[childrenKey.value] : []);
   const getLabel = (node: TreeNodeData): string => (node ? node[labelKey.value] : '');
+  const getPath = (node: TreeNodeData): string => (node ? node[pathKey.value] : '');
 
   /**
    * 清除指定查询参数的路径
@@ -302,13 +307,14 @@ export const useTree = (props: TreeProps, emits: SetupContext<typeof TreeEmits>[
         const children = getChildren(rawNode);
         const key = getKey(rawNode);
         const label = getLabel(rawNode);
+        const path = getPath(rawNode);
 
         // 拼接父节点的 label，生成当前节点的完整路径
         const parentLabelPath = parent ? parent.fullPath || getLabel(parent) : '';
         const fullPath = parentLabelPath ? `${parentLabelPath}/${label}` : label;
         // 确定根节点 ID，如果没有父节点，则当前节点为根节点
         const currentRootId = rootId ?? key;
-        const parseUrlObj = parseUrl(rawNode.path);
+        const parseUrlObj = parseUrl(path);
 
         const node: ITreeNode = {
           ...rawNode,
@@ -316,6 +322,7 @@ export const useTree = (props: TreeProps, emits: SetupContext<typeof TreeEmits>[
           parent,
           level,
           label,
+          path,
           isLeaf: !children || children.length === 0,
           data: rawNode,
           fullPath,
@@ -767,10 +774,29 @@ export const useTree = (props: TreeProps, emits: SetupContext<typeof TreeEmits>[
       .filter(Boolean);
 
   /**
+   * 通过路由路径设置当前高亮节点
+   * @param path 路由路径
+   */
+  const setCurrentKeyByPath = (path: string) => {
+    const node = findPathByKey(cleanPath(path));
+    const key = node?.[valueKey.value as keyof ITreeNode] as TreeKey | undefined;
+
+    if (!key && key !== 0) return;
+
+    // 等待渲染主线程完成任务后再执行延迟队列内容，防止此时拿到的元素宽高计算异常
+    setTimeout(() => {
+      setCurrentKey(key);
+    });
+
+    return node;
+  };
+
+  /**
    * 通过路径重新匹配当前选中节点
    * 当菜单数据刷新后uuid变化导致原key找不到时，通过path重新匹配
    */
   const reMatchCurrentNodeByPath = async () => {
+    console.log('重新匹配当前选中节点');
     const currentKey = currentNode.value;
     if (currentKey && !tree.value?.treeNodesMap.get(currentKey)) {
       const currentPath = cleanPath(router.currentRoute.value.fullPath);
@@ -824,13 +850,30 @@ export const useTree = (props: TreeProps, emits: SetupContext<typeof TreeEmits>[
   watch(
     () => props.defaultActive,
     async key => {
-      /** 增加自定义路由参数忽略匹配功能 */
-      const path = cleanPath(key);
-      const node = findPathByKey(path);
-      // 等待渲染主线程完成任务后再执行延迟队列内容，防止此时拿到的元素宽高计算异常
-      setTimeout(() => {
-        setCurrentKey(node?.[valueKey.value as keyof ITreeNode] as TreeKey);
-      });
+      /**
+       * router 模式下优先匹配当前路由：
+       * - 当前路由存在于菜单树中：高亮当前路由对应菜单
+       * - 当前路由不存在于菜单树中：跳转并高亮默认激活路由
+       */
+      if (props.router) {
+        const currentPath = cleanPath(router.currentRoute.value.fullPath);
+        const currentNodeData = setCurrentKeyByPath(currentPath);
+        console.log('当前路由：', currentNodeData);
+        if (currentNodeData) return;
+
+        if (key) {
+          const defaultPath = cleanPath(key);
+          const defaultNode = setCurrentKeyByPath(defaultPath);
+
+          if (defaultNode && currentPath !== defaultPath) {
+            await router.push(key);
+          }
+        }
+
+        return;
+      }
+
+      setCurrentKeyByPath(key);
     },
     {
       immediate: true,

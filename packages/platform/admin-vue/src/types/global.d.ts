@@ -3,6 +3,12 @@ declare global {
     [key: string]: any;
     [key: number]: any;
   };
+  interface Vo<T> {
+    susccess: boolean;
+    message: string;
+    data: T;
+  }
+
   const logger: {
     log: (...args: any[]) => void;
     info: (...args: any[]) => void;

@@ -1,34 +1,30 @@
 <template>
   <div class="menu-demo">
-    <plt-menu :data="menus" default-active="/system/user" @node-click="handleNodeClick" />
+    <plt-menu
+      :data="menuData"
+      :fieldNames="menuProps"
+      :default-active="menuDefaultActive"
+      :router="true"
+      @node-click="handleNodeClick"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
-const menus = [
-  {
-    value: 'home',
-    label: '首页',
-    path: '/home',
-  },
-  {
-    value: 'system',
-    label: '系统管理',
-    children: [
-      {
-        value: 'system-user',
-        label: '用户管理',
-        path: '/system/user',
-      },
-      {
-        value: 'system-role',
-        label: '角色管理',
-        path: '/system/role',
-      },
-    ],
-  },
-];
+import type { MenuTreeOptions } from '@admin-vue/apis/system/index.type';
 
+defineOptions({
+  name: 'AppMenu',
+});
+
+const props = withDefaults(
+  defineProps<{
+    menuData: MenuTreeOptions[];
+    menuProps: AnyObj;
+    menuDefaultActive: string;
+  }>(),
+  {}
+);
 const handleNodeClick = (data: any, node: any, event: MouseEvent) => {
   console.log('点击菜单：', data, node, event);
 };

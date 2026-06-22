@@ -19,7 +19,7 @@ export const initStores = async (app: App, options: InitStoreOptions) => {
   const { namespace } = options;
   const ls = new SecureLS({
     encodingType: 'aes',
-    encryptionSecret: import.meta.env.VITE_APP_STORE_SECURE_KEY,
+    encryptionSecret: import.meta.env.VITE_STORE_SECURE_KEY,
     isCompression: true,
     // @ts-ignore secure-ls does not have a type definition for this
     metaKey: `${namespace}-secure-meta`,
