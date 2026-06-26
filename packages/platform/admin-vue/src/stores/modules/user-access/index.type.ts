@@ -1,3 +1,5 @@
+export type AccessToken = null | string;
+
 export interface UserInfoType {
   /** 用户id */
   id: number;
@@ -25,5 +27,12 @@ export interface UserInfoType {
  * 用户模块
  */
 export interface UserAccessState {
-  userInfo: UserInfoType;
+  /**
+   * 登录 accessToken
+   */
+  accessToken: AccessToken;
+  /** 登录时间 */
+  timeStamp: number;
+  /** 用户信息 */
+  userInfo: UserInfoType | null;
 }

@@ -5,6 +5,7 @@
     </div>
     <div class="company-name">
       <span>AgentiCenter PCM</span>
+      {{ currentMenuList.length }}
     </div>
     <div class="nav-box">
       <app-menu
@@ -13,6 +14,9 @@
         :menu-props="menuOptionsProps"
         :menu-default-active="menuDefaultActive"
       ></app-menu>
+    </div>
+    <div class="nav-foot" @click="initMenuData({ isChangeNavigation: true })">
+      {{ menuModelTitle }}
     </div>
   </aside>
 </template>
@@ -25,15 +29,22 @@ defineOptions({
   name: 'AppNav',
 });
 
-const { currentMenuList, menuOptionsProps, menuDefaultActive } = nav();
+const { menuModelTitle, currentMenuList, menuOptionsProps, menuDefaultActive, initMenuData } =
+  nav();
 </script>
 <style lang="scss" scoped>
 .app-nav {
   height: 100%;
   background-color: var(--plt-menu-background-color);
-  &-box {
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  .nav-box {
+    flex: 1;
     overflow: auto;
+  }
+  .nav-foot {
+    padding: var(--plt-basic-padding-common);
+    cursor: pointer;
   }
 }
 </style>

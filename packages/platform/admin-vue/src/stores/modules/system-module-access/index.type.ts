@@ -6,24 +6,35 @@ import { MenuStatus } from '@admin-vue/enums/global.enum';
 export type SystemModuleAccessState = {
   /** 激活的导航栏项 */
   activeTabFullPath: string;
-  navigationType: MenuStatus | null;
-  [MenuStatus.CompanyManagement]: SystemNavigationOptions;
-  [MenuStatus.CompanyPerson]: SystemNavigationOptions;
-};
-
-/** 系统导航栏配置 */
-export type SystemNavigationOptions = {
+  navigationType: MenuStatus;
   /**
    * 顶部导航栏列表
    */
-  tabBarlist: TabBarListOptions[];
+  tabBarList: TabBarListOptions[];
   /**
    * 侧边栏列表
    */
-  menulist: MenuTreeOptions[];
+  menuList: MenuTreeOptions[];
   /** 缓存的视图名称 */
   cachedViewNames: string[];
+
+  /** 路由 */
+  routeRecordRaw: AnyObj[];
 };
+
+// /** 系统导航栏配置 */
+// export type SystemNavigationOptions = {
+//   /**
+//    * 顶部导航栏列表
+//    */
+//   tabBarlist: TabBarListOptions[];
+//   /**
+//    * 侧边栏列表
+//    */
+//   menulist: MenuTreeOptions[];
+//   /** 缓存的视图名称 */
+//   cachedViewNames: string[];
+// };
 
 /** 顶部导航栏项 */
 export type TabBarListOptions = {

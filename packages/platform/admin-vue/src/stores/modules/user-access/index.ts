@@ -5,7 +5,9 @@ import type {
 } from '@admin-vue/stores/modules/user-access/index.type';
 
 import { login } from '@admin-vue/apis/login';
-import { coreAccessStore } from '@admin-vue/stores';
+import { MenuStatus } from '@admin-vue/enums/global.enum';
+import { router } from '@admin-vue/router';
+import { adminAccessStore } from '@admin-vue/stores';
 import { PiniaName } from '@admin-vue/stores/index.enum';
 import { defineStore } from 'pinia';
 import { reactive, toRefs } from 'vue';
@@ -15,18 +17,9 @@ export const userAccessStore = defineStore(
   () => {
     /** 初始store的值 */
     const initialState = (): UserAccessState => ({
-      userInfo: {
-        id: -1,
-        userName: '',
-        name: '',
-        phone: '',
-        avatar: '',
-        description: '',
-        status: 0,
-        isDeleted: 0,
-        createTime: '',
-        updateTime: '',
-      },
+      accessToken: null,
+      timeStamp: 0,
+      userInfo: null,
     });
 
     /** 数据 */
@@ -34,17 +27,14 @@ export const userAccessStore = defineStore(
 
     /** 方法 */
     const actions = {
-      /**
-       * 更新用户信息
-       * @param userInfo
-       */
-      updateUserInfo(userInfo: Partial<UserInfoType>) {
-        Object.keys(userInfo).forEach(key => {
-          if (!Object.prototype.hasOwnProperty.call(state.userInfo, key)) return;
-
-          const value = userInfo[key as keyof UserInfoType];
-          if (value !== undefined) Reflect.set(state.userInfo, key, value);
-        });
+      /** 设置token */
+      setAccessToken(accessToken: string | null) {
+        state.accessToken = accessToken;
+        state.timeStamp = accessToken ? Date.now() : 0;
+      },
+      /** 设置用户信息 */
+      setUserInfo(userInfo: UserInfoType | null) {
+        state.userInfo = userInfo;
       },
 
       /**
@@ -52,20 +42,37 @@ export const userAccessStore = defineStore(
        */
       async login(loginForm: ILoginForm) {
         try {
+          // 1. 登录
           const { data } = await login(loginForm);
           if (!data) return;
 
-          // 1. 储存token
-          const coreAccess = coreAccessStore();
-          coreAccess.setAccessToken(data.token);
+          // 2. 设置信息
+          this.setAccessToken(data.token);
+          this.setUserInfo(data.user);
 
-          // 2. 储存用户信息
-          this.updateUserInfo(data.user);
+          // 3. 初始化化菜单信息
+          const adminAccess = adminAccessStore();
+          adminAccess.initMenuList(MenuStatus.CompanyPerson);
 
           return Promise.resolve();
         } catch (error) {
           return Promise.reject(error);
         }
+      },
+
+      /** 登出 */
+      logout() {
+        // 清空用户信息
+        this.setAccessToken(null);
+        this.setUserInfo(null);
+
+        // 重置标签页
+        const adminAccess = adminAccessStore();
+        adminAccess.setTabBarList([]);
+        adminAccess.setMenuList([]);
+
+        // 跳转到登录页
+        router.push('/login');
       },
     };
 

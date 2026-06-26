@@ -1,3 +1,4 @@
+import { MenuStatus } from '@admin-vue/enums/global.enum';
 import type { NavigationGuardWithThis, NavigationHookAfter } from 'vue-router';
 
 /** # 路由的 meta自定义配置项 */
@@ -18,6 +19,9 @@ export interface RouteMetaCustomizeOptions extends Record<string, any> {
   keepAlive?: boolean;
   /** 自定义 tab 标题，不配置则使用 route.meta.title */
   tabTitle?: string;
+
+  /** 菜单类型- 看是用户菜单还是管理菜单 */
+  navigationType?: MenuStatus;
 }
 
 export interface UseRouteGuardOptions {

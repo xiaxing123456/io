@@ -6,8 +6,8 @@ export enum PiniaName {
   CoreAccess = 'core-access',
   /** 用户模块 */
   UserAccess = 'user-access',
-  /** 路由模块 */
-  Routers = 'routers',
   /** 系统资源模块 */
   SystemModuleAccess = 'system-module-access',
+  /** 系统模块权限模块 */
+  AdminAccess = 'admin-access',
 }

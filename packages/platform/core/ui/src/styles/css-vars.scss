@@ -1,5 +1,61 @@
 :root,
 [data-plt-theme='light'] {
+  /**
+    ===================================
+    基础样式设置 --plt-basic-*
+    ===================================
+  */
+
+  /* 字体大小 */
+  --plt-basic-font-size-xxs: 12px;
+  --plt-basic-font-size-xs: 14px;
+  --plt-basic-font-size-s: 15px;
+  --plt-basic-font-size-ms: 16px;
+  --plt-basic-font-size-m: 18px;
+  --plt-basic-font-size-l: 20px;
+  --plt-basic-font-size-common: var(--plt-basic-font-size-xs);
+
+  /* 文字粗细 */
+  --plt-basic-font-weight-light: 350;
+  --plt-basic-font-weight-normal: 400;
+  --plt-basic-font-weight-regular: 450;
+  --plt-basic-font-weight-medium: 500;
+  --plt-basic-font-weight-bold: 600;
+  --plt-basic-font-weight-heavy: 650;
+  --plt-basic-font-weight-bolder: 700;
+
+  /* 图标大小*/
+  --plt-basic-icon-size-common: 14px;
+  --plt-basic-icon-size-btn: 16px;
+  --plt-basic-icon-size-menu: 18px;
+  --plt-basic-icon-size-header: 22px;
+
+  /* 外边距 */
+  --plt-basic-margin-xs: 4px;
+  --plt-basic-margin-s: 8px;
+  --plt-basic-margin-m: 12px;
+  --plt-basic-margin-l: 16px;
+  --plt-basic-margin-xl: 24px;
+  --plt-basic-margin-xxl: 32px;
+  --plt-basic-margin-common: var(--plt-basic-margin-s);
+
+  /* 内边距 */
+  --plt-basic-padding-xs: 4px;
+  --plt-basic-padding-s: 8px;
+  --plt-basic-padding-m: 12px;
+  --plt-basic-padding-l: 16px;
+  --plt-basic-padding-xl: 24px;
+  --plt-basic-padding-xxl: 32px;
+  --plt-basic-padding-xxxl: 48px;
+  --plt-basic-padding-common: var(--plt-basic-padding-s);
+
+  /* 圆角 */
+  --plt-basic-radius-xs: 2px;
+  --plt-basic-radius-s: 4px;
+  --plt-basic-radius-m: 8px;
+  --plt-basic-radius-l: 16px;
+  --plt-basic-radius-common: var(--plt-basic-radius-s);
+
   // =================== 颜色 ============================
   --plt-basic-color-primary: #409eff; // 主题色
   --plt-basic-color-primary-rgb: 64, 158, 255; // 主题色 RGB，用于 rgba()
@@ -37,62 +93,6 @@
   --plt-basic-color-primary-light-7: rgba(var(--plt-basic-color-primary-rgb), 0.3);
   --plt-basic-color-primary-light-8: rgba(var(--plt-basic-color-primary-rgb), 0.2);
   --plt-basic-color-primary-light-9: rgba(var(--plt-basic-color-primary-rgb), 0.1);
-
-  /**
-    ===================================
-    基础样式设置 --plt-basic-*
-    ===================================
-    */
-
-  /* 外边距 */
-  --plt-basic-margin-xs: 4px;
-  --plt-basic-margin-s: 8px;
-  --plt-basic-margin-m: 12px;
-  --plt-basic-margin-l: 16px;
-  --plt-basic-margin-xl: 24px;
-  --plt-basic-margin-xxl: 32px;
-  --plt-basic-margin-common: var(--plt-basic-margin-s);
-
-  /* 内边距 */
-  --plt-basic-padding-xs: 4px;
-  --plt-basic-padding-s: 8px;
-  --plt-basic-padding-m: 12px;
-  --plt-basic-padding-l: 16px;
-  --plt-basic-padding-xl: 24px;
-  --plt-basic-padding-xxl: 32px;
-  --plt-basic-padding-xxxl: 48px;
-  --plt-basic-padding-common: var(--plt-basic-padding-s);
-
-  /* 圆角 */
-  --plt-basic-radius-xs: 2px;
-  --plt-basic-radius-s: 4px;
-  --plt-basic-radius-m: 8px;
-  --plt-basic-radius-l: 16px;
-  --plt-basic-radius-common: var(--plt-basic-radius-s);
-
-  /* 字体大小 */
-  --plt-basic-font-size-xxs: 12px;
-  --plt-basic-font-size-xs: 14px;
-  --plt-basic-font-size-s: 15px;
-  --plt-basic-font-size-ms: 16px;
-  --plt-basic-font-size-m: 18px;
-  --plt-basic-font-size-l: 20px;
-  --plt-basic-font-size-common: var(--plt-basic-font-size-xs);
-
-  /* 文字粗细 */
-  --plt-basic-font-weight-light: 350;
-  --plt-basic-font-weight-normal: 400;
-  --plt-basic-font-weight-regular: 450;
-  --plt-basic-font-weight-medium: 500;
-  --plt-basic-font-weight-bold: 600;
-  --plt-basic-font-weight-heavy: 650;
-  --plt-basic-font-weight-bolder: 700;
-
-  /* 图标大小*/
-  --plt-basic-icon-size-common: 14px;
-  --plt-basic-icon-size-btn: 16px;
-  --plt-basic-icon-size-menu: 18px;
-  --plt-basic-icon-size-header: 22px;
 
   /**
     ===================================

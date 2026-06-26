@@ -28,15 +28,21 @@ export const useRouteGuard = (router: Router, options?: UseRouteGuardOptions): R
       if (isDone) return;
     }
 
+    const toRouteName = (to.name ?? '') as string;
+    const toRoutePath = to.path;
+    const accessToken = coreAccess.getAccessToken();
     // 支持不登录就可以访问地址
     if (isIgnoreLoginPath(to)) {
       next();
       return;
     }
 
-    const accessToken = coreAccess.getAccessToken();
+    // 如果跳转的是根路径，并且已登录，则跳转到首页
+    if (toRoutePath === '/' && accessToken) {
+      next({});
+    }
+
     // 如果是登录页面，并且已登录，则跳转到来的路径
-    const toRouteName = (to.name ?? '') as string;
     if (toRouteName === 'login' && accessToken) {
       if (from.name) {
         next(false);
@@ -77,7 +83,7 @@ export const useRouteGuard = (router: Router, options?: UseRouteGuardOptions): R
       if (isDone) return;
     }
     console.log('$_afterEach', to);
-    syncRouteToTab(to);
+    // syncRouteToTab(to);
   };
   // 注册路由前置守卫
   router?.afterEach(options?.afterEach || $_afterEach);

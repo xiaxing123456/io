@@ -1,7 +1,6 @@
 import type { UseRouteGuardOptions } from '@admin-vue/router/index.type';
 
 import { useRouteGuard } from '@admin-vue/router/tools/guard';
-import { routersStore } from '@admin-vue/stores/modules/routers';
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 
 /**
@@ -92,9 +91,13 @@ const initRouter = (routes: RouteRecordRaw[]) => {
   return router;
 };
 
+/**
+ * 生成路由
+ * @param routes
+ * @param options
+ * @returns
+ */
 const generateRouter = (routes: RouteRecordRaw[], options: UseRouteGuardOptions) => {
-  const useRoutersStore = routersStore();
-  useRoutersStore.setRouteRecordRaw(routes);
   return useRouteGuard(initRouter(routes), options);
 };
 

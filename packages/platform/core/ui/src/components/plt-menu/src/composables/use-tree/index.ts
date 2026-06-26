@@ -774,29 +774,10 @@ export const useTree = (props: TreeProps, emits: SetupContext<typeof TreeEmits>[
       .filter(Boolean);
 
   /**
-   * 通过路由路径设置当前高亮节点
-   * @param path 路由路径
-   */
-  const setCurrentKeyByPath = (path: string) => {
-    const node = findPathByKey(cleanPath(path));
-    const key = node?.[valueKey.value as keyof ITreeNode] as TreeKey | undefined;
-
-    if (!key && key !== 0) return;
-
-    // 等待渲染主线程完成任务后再执行延迟队列内容，防止此时拿到的元素宽高计算异常
-    setTimeout(() => {
-      setCurrentKey(key);
-    });
-
-    return node;
-  };
-
-  /**
    * 通过路径重新匹配当前选中节点
    * 当菜单数据刷新后uuid变化导致原key找不到时，通过path重新匹配
    */
   const reMatchCurrentNodeByPath = async () => {
-    console.log('重新匹配当前选中节点');
     const currentKey = currentNode.value;
     if (currentKey && !tree.value?.treeNodesMap.get(currentKey)) {
       const currentPath = cleanPath(router.currentRoute.value.fullPath);
@@ -831,6 +812,24 @@ export const useTree = (props: TreeProps, emits: SetupContext<typeof TreeEmits>[
 
   useEventListener(document, 'mouseleave', handleMouseEvent);
 
+  /**
+   * 通过路由路径设置当前高亮节点
+   * @param path 路由路径
+   */
+  const setCurrentKeyByPath = (path: string) => {
+    const node = findPathByKey(cleanPath(path));
+    const key = node?.[valueKey.value as keyof ITreeNode] as TreeKey | undefined;
+
+    if (!key && key !== 0) return;
+
+    // 等待渲染主线程完成任务后再执行延迟队列内容，防止此时拿到的元素宽高计算异常
+    setTimeout(() => {
+      setCurrentKey(key);
+    });
+
+    return node;
+  };
+
   watch(
     () => props.data,
     (data: TreeData) => {
@@ -850,30 +849,13 @@ export const useTree = (props: TreeProps, emits: SetupContext<typeof TreeEmits>[
   watch(
     () => props.defaultActive,
     async key => {
-      /**
-       * router 模式下优先匹配当前路由：
-       * - 当前路由存在于菜单树中：高亮当前路由对应菜单
-       * - 当前路由不存在于菜单树中：跳转并高亮默认激活路由
-       */
-      if (props.router) {
-        const currentPath = cleanPath(router.currentRoute.value.fullPath);
-        const currentNodeData = setCurrentKeyByPath(currentPath);
-        console.log('当前路由：', currentNodeData);
-        if (currentNodeData) return;
-
-        if (key) {
-          const defaultPath = cleanPath(key);
-          const defaultNode = setCurrentKeyByPath(defaultPath);
-
-          if (defaultNode && currentPath !== defaultPath) {
-            await router.push(key);
-          }
-        }
-
-        return;
-      }
-
-      setCurrentKeyByPath(key);
+      /** 增加自定义路由参数忽略匹配功能 */
+      const path = cleanPath(key);
+      const node = findPathByKey(path);
+      // 等待渲染主线程完成任务后再执行延迟队列内容，防止此时拿到的元素宽高计算异常
+      setTimeout(() => {
+        setCurrentKey(node?.[valueKey.value as keyof ITreeNode] as TreeKey);
+      });
     },
     {
       immediate: true,

@@ -145,6 +145,9 @@ import { $t } from '@admin-vue/i18n';
 import { userAccessStore } from '@admin-vue/stores';
 import AnimateBackground from '@admin-vue/views/login/animate-background.vue';
 import { onMounted, reactive, ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const { encrypt } = useRSAEncrypt();
 const userAccess = userAccessStore();
@@ -185,6 +188,7 @@ const submitLogin = useApi(async () => {
       codeKey: formData.codeKey,
     };
     await userAccess.login(params);
+    router.push('/');
   } catch (error) {
     logger.error(error);
   }

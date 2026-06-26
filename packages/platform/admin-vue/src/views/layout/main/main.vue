@@ -9,7 +9,15 @@
           <app-header></app-header>
           <app-tabs-bar></app-tabs-bar>
         </div>
-        <div class="main-container">222</div>
+        <div class="main-container">
+          <div class="main-container">
+            <router-view v-slot="{ Component, route }">
+              <KeepAlive :include="cachedViewNames">
+                <component :is="Component" :key="route.fullPath" />
+              </KeepAlive>
+            </router-view>
+          </div>
+        </div>
       </template>
     </plt-mobile-container>
   </main>
@@ -22,7 +30,7 @@ import AppTabsBar from '@admin-vue/views/layout/tabs-bar/tabs-bar.vue';
 
 import { main } from '@admin-vue/views/layout/main/main';
 
-const { layoutMainList } = main();
+const { layoutMainList, cachedViewNames } = main();
 </script>
 
 <style lang="scss" scoped>

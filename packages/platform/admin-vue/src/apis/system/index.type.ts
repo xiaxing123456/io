@@ -2,7 +2,7 @@ import { MenuStatus } from '@admin-vue/enums/global.enum';
 
 /** 菜单接口参数 */
 export interface MenuDto {
-  navType: MenuStatus;
+  navigationType: MenuStatus;
 }
 
 export interface MenuTreeOptions {

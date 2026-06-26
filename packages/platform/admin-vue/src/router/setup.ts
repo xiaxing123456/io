@@ -4,6 +4,7 @@ import { routers } from '@admin-vue/router/modules';
 import { generateRouter, mergeRoute } from '@admin-vue/router/tools';
 import { Router, RouteRecordRaw } from 'vue-router';
 
+export let router: Router;
 export const initRouter = (
   app: App,
   options?: {
