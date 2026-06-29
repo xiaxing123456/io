@@ -1,44 +1,30 @@
-import type {
-  MenuTreeOptions,
-  TabBarListOptions,
-} from '@admin-vue/stores/modules/system-module-access/index.type';
 import type { RouteLocationNormalizedLoaded } from 'vue-router';
 
-import { MenuStatus } from '@admin-vue/enums/global.enum';
 import { RouteMetaCustomizeOpsKey } from '@admin-vue/router/index.enum';
-import { systemModuleAccessStore } from '@admin-vue/stores';
+import { adminAccessStore } from '@admin-vue/stores';
+import { TabBarListOptions } from '@admin-vue/stores/modules/admin-access/index.type';
 
 export const useTabBarRouteSync = () => {
-  const systemModuleAccess = systemModuleAccessStore();
-  const findMenuByCode = (
-    menus: MenuTreeOptions[],
-    menuCode: string
-  ): MenuTreeOptions | undefined => {
-    for (const menu of menus) {
-      if (menu.menuCode === menuCode) return menu;
+  const adminAccess = adminAccessStore();
 
-      const child = findMenuByCode(menu.children || [], menuCode);
-      if (child) return child;
-    }
-  };
-
-  const createTabFromRoute = (route: RouteLocationNormalizedLoaded): TabBarListOptions => {
+  const createTabFromRoute = (route: RouteLocationNormalizedLoaded): TabBarListOptions | null => {
+    const menuMap = adminAccess.getMenuMap();
+    const menu = menuMap.get(route.fullPath);
     const customizeOps = route.meta?.[RouteMetaCustomizeOpsKey.Name] || {};
-    const menuCode = String(route.query.menuCode || '');
-    const menu = findMenuByCode(systemModuleAccess.state.menulist as MenuTreeOptions[], menuCode);
+    if (!menu) return null;
 
     return {
-      title: menu?.menuName || String(route.meta.title || route.name || route.path),
-      path: route.fullPath,
-      fullPath: route.fullPath,
-      routeName: route.name ? String(route.name) : undefined,
-      menuCode,
-      navigationType: route.query.navigationType as unknown as MenuStatus,
-      icon: menu?.menuSvgId || customizeOps.icon,
+      title: menu.menuName,
+      path: menu.url,
+      fullPath: menu.fullUrl,
+      routeName: route.name as string,
+      menuCode: menu.menuCode,
+      navigationType: menu.navigationType,
+      icon: menu?.menuSvgId,
       affix: !!customizeOps.affix,
       closable: !customizeOps.affix,
       keepAlive: !!customizeOps.keepAlive,
-      componentName: route.name ? String(route.name) : undefined,
+      componentName: route.name as string,
     };
   };
 
@@ -49,18 +35,9 @@ export const useTabBarRouteSync = () => {
    * @param route 路由对象
    */
   const syncRouteToTab = (route: RouteLocationNormalizedLoaded) => {
-    const customizeOps = route.meta?.[RouteMetaCustomizeOpsKey.Name] || {};
-
-    // 是否隐藏标签
-    if (customizeOps.hiddenTab) return;
-
     const tab = createTabFromRoute(route);
-    systemModuleAccess.addTab(tab);
-    systemModuleAccess.setActiveTab(tab.fullPath);
-
-    if (tab.keepAlive && tab.componentName) {
-      systemModuleAccess.addCachedView(tab.componentName);
-    }
+    if (!tab) return;
+    adminAccess.addTabBar(tab);
   };
 
   return {

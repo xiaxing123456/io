@@ -15,7 +15,7 @@
         :menu-default-active="menuDefaultActive"
       ></app-menu>
     </div>
-    <div class="nav-foot" @click="initMenuData({ isChangeNavigation: true })">
+    <div class="nav-foot" @click="changeNavigationType">
       {{ menuModelTitle }}
     </div>
   </aside>
@@ -29,8 +29,13 @@ defineOptions({
   name: 'AppNav',
 });
 
-const { menuModelTitle, currentMenuList, menuOptionsProps, menuDefaultActive, initMenuData } =
-  nav();
+const {
+  menuModelTitle,
+  currentMenuList,
+  menuOptionsProps,
+  menuDefaultActive,
+  changeNavigationType,
+} = nav();
 </script>
 <style lang="scss" scoped>
 .app-nav {

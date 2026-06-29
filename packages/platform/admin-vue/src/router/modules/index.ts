@@ -19,7 +19,9 @@ export const routers: RouteRecordRaw[] = [
     component: viewComponent.Login,
     meta: {
       title: '登录',
-      [RouteMetaCustomizeOpsKey.Name]: {},
+      [RouteMetaCustomizeOpsKey.Name]: {
+        hiddenTab: true,
+      },
     },
   },
   {

@@ -2,7 +2,7 @@ import type { UseRouteGuardOptions } from '@admin-vue/router/index.type';
 
 import { useTabBarRouteSync } from '@admin-vue/composables/use-tab-bar-route-sync/use-tab-bar-route-sync';
 import { isIgnoreLoginPath } from '@admin-vue/router/tools/common';
-import { coreAccessStore } from '@admin-vue/stores';
+import { adminAccessStore, userAccessStore } from '@admin-vue/stores';
 import { NavigationGuardWithThis, NavigationHookAfter, Router } from 'vue-router';
 
 /**
@@ -17,7 +17,8 @@ import { NavigationGuardWithThis, NavigationHookAfter, Router } from 'vue-router
  * @returns
  */
 export const useRouteGuard = (router: Router, options?: UseRouteGuardOptions): Router => {
-  const coreAccess = coreAccessStore();
+  const userAccess = userAccessStore();
+  const adminAccess = adminAccessStore();
   const { syncRouteToTab } = useTabBarRouteSync();
 
   // 默认前置守卫
@@ -30,47 +31,35 @@ export const useRouteGuard = (router: Router, options?: UseRouteGuardOptions): R
 
     const toRouteName = (to.name ?? '') as string;
     const toRoutePath = to.path;
-    const accessToken = coreAccess.getAccessToken();
+    const accessToken = userAccess.getAccessToken();
     // 支持不登录就可以访问地址
     if (isIgnoreLoginPath(to)) {
       next();
       return;
     }
 
-    // 如果跳转的是根路径，并且已登录，则跳转到首页
-    if (toRoutePath === '/' && accessToken) {
-      next({});
-    }
+    // 查看是否已经登录
+    if (accessToken) {
+      // 确保菜单列表已经加载
+      await adminAccess.ensureMenuList();
 
-    // 如果是登录页面，并且已登录，则跳转到来的路径
-    if (toRouteName === 'login' && accessToken) {
-      if (from.name) {
-        next(false);
-      } else {
-        next({
-          path: from.fullPath,
-        });
+      // 如果是登录页面，则跳转到首页
+      if (toRouteName === 'login' || toRoutePath === '/') {
+        const homeUrl = adminAccess.getMenuHomeUrl();
+        if (!homeUrl) {
+          next('/404');
+          return;
+        }
+        next(homeUrl);
+        return;
       }
-      return;
+    } else {
+      // 如果未登录设置全局的跳转地址为登录页面
+      if (['login'].includes(toRouteName)) {
+        next({ name: 'login' });
+        return;
+      }
     }
-
-    // logout
-    if (!['login', 'passwordUpdate'].includes(toRouteName) && !accessToken) {
-      // // 处理单点登录重定向
-      // try {
-      //     await handleRedirectInfo();
-      //     // 必须调用next 不然会导致改变Window.location.href 页面不跳转
-      //     // 只能写 next({ name: 'login' }); 不然页面会刷新 导致登录超时 出现二次确认框
-      // } catch (error) {
-      //     logger.error(error, 'error');
-      // } finally {
-      //     next({ name: 'login' });
-      // }
-
-      next({ name: 'login' });
-      return;
-    }
-
     next();
   };
 
@@ -82,8 +71,7 @@ export const useRouteGuard = (router: Router, options?: UseRouteGuardOptions): R
       const { isDone } = await options?.afterEachHook({ router, to, from });
       if (isDone) return;
     }
-    console.log('$_afterEach', to);
-    // syncRouteToTab(to);
+    syncRouteToTab(to);
   };
   // 注册路由前置守卫
   router?.afterEach(options?.afterEach || $_afterEach);

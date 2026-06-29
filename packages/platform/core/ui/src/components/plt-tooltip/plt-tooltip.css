@@ -1,0 +1,13 @@
+.plt-tooltip__content, .el-tooltip__trigger {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: pre;
+}
+
+/* Tooltip 弹出内容样式 - 防止超出屏幕 */
+.plt-tooltip-popper {
+    /* 限制最大宽度为视口宽度的 100%，并留出边距 */
+    max-width: calc(100vw - 20px);
+}
+
+

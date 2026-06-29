@@ -2,7 +2,7 @@ import { envMicrServices } from '@admin-vue/utils/env-var';
 import Mock from 'mockjs';
 
 Mock.setup({
-  timeout: 1000, // 设置延迟时间为 1000 毫秒（即 1 秒）
+  timeout: 200, // 设置延迟时间为 1000 毫秒（即 1 秒）
 });
 
 const baseUrl = `/api/${envMicrServices.managerServer}`;

@@ -11,6 +11,9 @@ export type AdminAccessState = {
   navigationType: MenuStatus;
   /** 侧边栏列表 */
   menuList: MenuTreeOptions[];
+  /** 菜单是否已在本次应用生命周期初始化 */
+  isMenuListInitialized: boolean;
+  menuMap: Map<string, MenuTreeOptions>;
   /** 顶部导航列表 */
   tabBarList: TabBarListOptions[];
 };

@@ -1,3 +1,7 @@
+export const getStyle = (targetElement: HTMLElement, styleKey: string) => {
+  return getComputedStyle(targetElement, null).getPropertyValue(styleKey);
+};
+
 /** 字符串分组 */
 export const trimArr = function (s: string) {
   return (s || '').split(' ').filter(item => !!item.trim());
@@ -42,4 +46,16 @@ export const removeClass = (el: HTMLElement | Element, cls: string): void => {
 
   const className = trimArr(curClass).join(' ');
   el.setAttribute('class', className);
+};
+
+/** 标签可容纳内容宽度 */
+export const getElContentWidth = (targetElement: HTMLElement) => {
+  const padding =
+    parseInt(getStyle(targetElement, 'padding-left'), 10) +
+    parseInt(getStyle(targetElement, 'padding-right'), 10);
+  const border =
+    parseInt(getStyle(targetElement, 'border-left'), 10) +
+    parseInt(getStyle(targetElement, 'border-right'), 10);
+
+  return targetElement.getBoundingClientRect().width - padding - border;
 };

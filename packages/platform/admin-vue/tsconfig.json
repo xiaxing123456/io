@@ -2,6 +2,7 @@
     "extends": "@io-platform/dev-config/tsconfig/tsconfig",
     "compilerOptions": {
         "rootDir": "./src",
+        "outDir": "dist",
         "paths": {
             "@admin-vue/*": ["./src/*"],
             "@locales": ["../../../node_modules/@io-platform/core-locales/src"],

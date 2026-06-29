@@ -14,7 +14,6 @@ export interface InitStoreOptions {
   namespace: string;
 }
 
-const createSecureStorage = () => {};
 export const initStores = async (app: App, options: InitStoreOptions) => {
   const { createPersistedState } = await import('pinia-plugin-persistedstate');
 

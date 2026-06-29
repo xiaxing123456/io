@@ -1,9 +1,18 @@
 import type {
   MenuTreeOptions,
   TabBarListOptions,
-} from '@admin-vue/stores/modules/admin-access/index.type';
+} from '@admin-vue/stores/modules/system-module-access/index.type';
+
+import { MenuStatus } from '@admin-vue/enums/global.enum';
 
 export const useHelper = () => {
+  /** 获取相反导航类型 */
+  const getOppositeNavigationType = (type: MenuStatus) => {
+    return type === MenuStatus.CompanyManagement
+      ? MenuStatus.CompanyPerson
+      : MenuStatus.CompanyManagement;
+  };
+
   /** 格式化菜单 url */
   const formatUrl = (node: MenuTreeOptions): MenuTreeOptions => {
     const { url } = node;
@@ -12,7 +21,8 @@ export const useHelper = () => {
       navigationType: `${node.navigationType}`,
     };
     const urlParamsString = new URLSearchParams(urlParams).toString();
-    node.fullUrl = url ? `${url}?${urlParamsString}` : '';
+    const newUrl = url ? `${url}?${urlParamsString}` : '';
+    node.url = newUrl;
     return node;
   };
 
@@ -55,11 +65,11 @@ export const useHelper = () => {
     });
   };
 
-  /** 创建固定标签 */
+  /** 创建 */
   const createTabByMenu = (menu: MenuTreeOptions): TabBarListOptions => ({
     title: menu.menuName,
     path: menu.url,
-    fullPath: menu.fullUrl,
+    fullPath: menu.url,
     menuCode: menu.menuCode,
     navigationType: menu.navigationType,
     icon: menu.menuSvgId,
@@ -68,6 +78,7 @@ export const useHelper = () => {
   });
 
   return {
+    getOppositeNavigationType,
     formatUrl,
     findFirstAvailableMenu,
     findMenuByUrl,

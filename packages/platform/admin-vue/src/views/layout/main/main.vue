@@ -12,7 +12,7 @@
         <div class="main-container">
           <div class="main-container">
             <router-view v-slot="{ Component, route }">
-              <KeepAlive :include="cachedViewNames">
+              <KeepAlive>
                 <component :is="Component" :key="route.fullPath" />
               </KeepAlive>
             </router-view>
@@ -30,7 +30,7 @@ import AppTabsBar from '@admin-vue/views/layout/tabs-bar/tabs-bar.vue';
 
 import { main } from '@admin-vue/views/layout/main/main';
 
-const { layoutMainList, cachedViewNames } = main();
+const { layoutMainList } = main();
 </script>
 
 <style lang="scss" scoped>

@@ -6,12 +6,18 @@
       :default-active="menuDefaultActive"
       :router="true"
       @node-click="handleNodeClick"
-    />
+    >
+      <template #content="{ node }">
+        <menu-item :node="node"></menu-item>
+      </template>
+    </plt-menu>
   </div>
 </template>
 
 <script lang="ts" setup>
 import type { MenuTreeOptions } from '@admin-vue/apis/system/index.type';
+
+import MenuItem from '@admin-vue/views/layout/sidebar/menu/menu-item.vue';
 
 defineOptions({
   name: 'AppMenu',

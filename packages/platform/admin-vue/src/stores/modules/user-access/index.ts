@@ -10,7 +10,7 @@ import { router } from '@admin-vue/router';
 import { adminAccessStore } from '@admin-vue/stores';
 import { PiniaName } from '@admin-vue/stores/index.enum';
 import { defineStore } from 'pinia';
-import { reactive, toRefs } from 'vue';
+import { reactive, toRef } from 'vue';
 
 export const userAccessStore = defineStore(
   PiniaName.UserAccess,
@@ -37,6 +37,28 @@ export const userAccessStore = defineStore(
         state.userInfo = userInfo;
       },
 
+      /** 获取accessToken */
+      getAccessToken() {
+        // 1. 判断token是否过期
+        const now = Date.now();
+        const isTokenExpired = now >= state.timeStamp + 24 * 60 * 60 * 1000;
+
+        // 2. 如果过期了，则清空token
+        if (isTokenExpired) {
+          state.accessToken = null;
+          state.timeStamp = 0;
+        }
+
+        // 3. 返回token
+        return state.accessToken;
+      },
+
+      /** 删除accessToken */
+      removeAccessToken() {
+        state.accessToken = null;
+        state.timeStamp = 0;
+      },
+
       /**
        * 用户登录，这个登录接口包含着登录用户的信息以及登录token
        */
@@ -52,7 +74,7 @@ export const userAccessStore = defineStore(
 
           // 3. 初始化化菜单信息
           const adminAccess = adminAccessStore();
-          adminAccess.initMenuList(MenuStatus.CompanyPerson);
+          await adminAccess.initMenuList(MenuStatus.CompanyPerson);
 
           return Promise.resolve();
         } catch (error) {
@@ -77,14 +99,14 @@ export const userAccessStore = defineStore(
     };
 
     return {
-      ...toRefs(state),
+      state: toRef(state),
       ...actions,
     };
   },
   {
     // 持久化
     persist: {
-      pick: ['userInfo'],
+      pick: ['state.userInfo', 'state.accessToken', 'state.timeStamp'],
     },
   }
 );

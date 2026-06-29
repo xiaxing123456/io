@@ -56,9 +56,9 @@ import { computed, ref } from 'vue';
 const userAccess = userAccessStore();
 const userInfo = computed(() => {
   return {
-    id: userAccess.userInfo.id,
-    avatar: userAccess.userInfo.avatar,
-    username: userAccess.userInfo.name,
+    id: userAccess.state.userInfo?.id,
+    avatar: userAccess.state.userInfo?.avatar,
+    username: userAccess.state.userInfo?.name,
     showName: true,
   };
 });
@@ -80,7 +80,7 @@ const personDropdownItem = ref([
 /** 退出登录 */
 const triggerLogout = useApi(
   async () => {
-    await logout(userInfo.value.id);
+    await logout(userInfo.value.id || 0);
   },
   undefined,
   { showLoading: false }

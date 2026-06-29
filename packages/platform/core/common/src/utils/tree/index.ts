@@ -133,7 +133,7 @@ interface AddPropertyForTreeOptions {
 
 interface UpdateTreeNodeForTreeOptions<
     T extends Record<string, any> = Record<string, any>,
-    TreeNode extends T | T[] = T | T[],
+    TreeNode extends T[] = T[],
 > {
     treeNode: TreeNode;
     updateNode: (node: T) => T;
@@ -184,7 +184,7 @@ export const addPropertyForTree = ({
  */
 export const updateTreeNodeForTree = <
     T extends Record<string, any> = Record<string, any>,
-    TreeNode extends T | T[] = T | T[],
+    TreeNode extends T[] = T[],
 >({
     treeNode,
     updateNode,

@@ -1,21 +1,24 @@
-import { systemModuleAccessStore } from '@admin-vue/stores';
-import { TabBarListOptions } from '@admin-vue/stores/modules/system-module-access/index.type';
+import { adminAccessStore } from '@admin-vue/stores';
+import { TabBarListOptions } from '@admin-vue/stores/modules/admin-access/index.type';
 import { computed, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 export const tabsBar = () => {
   const router = useRouter();
   const route = useRoute();
-  const systemModuleAccess = systemModuleAccessStore();
+  const adminAccess = adminAccessStore();
 
-  const activeTabFullPath = computed(() => systemModuleAccess.state.activeTabFullPath);
-  const barsList = computed(() => systemModuleAccess.state.tabBarlist);
+  /** 判断是否是激活的标签 */
+  const isTabActive = (tag: TabBarListOptions) => {
+    return route.fullPath === tag.fullPath;
+  };
+  const barsList = computed(() => adminAccess.state.tabBarList);
 
   onMounted(() => {});
 
   /** 触发点击切换 */
   const toggleBar = (tab: TabBarListOptions) => {
     if (tab.fullPath === route.fullPath) return;
-    router.push(tab.path || tab.fullPath);
+    router.push(tab.fullPath || tab.path);
   };
 
   /** 触发关闭 */
@@ -23,30 +26,25 @@ export const tabsBar = () => {
     // 不可关闭
     if (tab.closable === false) return;
 
-    systemModuleAccess.removeTab(tab.fullPath);
-
     const index = barsList.value.findIndex(item => item.fullPath === tab.fullPath);
-    const isActive = tab.fullPath === activeTabFullPath.value;
+    const isActive = tab.fullPath === route.fullPath;
 
+    // 删除
+    adminAccess.removeTabBar(tab.fullPath);
+
+    // 跳转
     if (isActive) {
       const nextTab = barsList.value[index - 1] || barsList.value[index] || barsList.value[0];
-      if (nextTab) {
-        await router.push(nextTab.path || nextTab.fullPath);
-      }
+      await router.push(nextTab?.fullPath || '/');
     }
   };
 
   /** 关闭其他标签 */
-  const closeOtherTabs = () => {
-    // const target = contextMenuTarget.value || currentActiveTab.value;
-    // if (!target) return;
-    // systemModuleAccess.closeOtherTabs(target.fullPath);
-    // router.push(target.path || target.fullPath);
-  };
+  const closeOtherTabs = () => {};
 
   return {
+    isTabActive,
     barsList,
-    activeTabFullPath,
     toggleBar,
     closeBar,
     closeOtherTabs,

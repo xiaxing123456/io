@@ -1,21 +1,21 @@
-import { coreAccessStore } from '@admin-vue/stores';
+import { userAccessStore } from '@admin-vue/stores';
 import { envVariables } from '@admin-vue/utils/env-var';
 import { createPlatformHttp } from './common/http';
 
 const tokenAdapterHandler = () => {
   return {
     getToken: () => {
-      const accessStore = coreAccessStore();
-      const token = accessStore.getAccessToken();
+      const userAccess = userAccessStore();
+      const token = userAccess.getAccessToken();
       return token ? token : null;
     },
     setToken: (token: string) => {
-      const accessStore = coreAccessStore();
-      accessStore.setAccessToken(token);
+      const userAccess = userAccessStore();
+      userAccess.setAccessToken(token);
     },
     clearToken: () => {
-      const accessStore = coreAccessStore();
-      accessStore.removeAccessToken();
+      const userAccess = userAccessStore();
+      userAccess.removeAccessToken();
     },
   };
 };

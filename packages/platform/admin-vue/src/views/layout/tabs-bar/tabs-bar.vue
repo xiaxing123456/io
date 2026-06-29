@@ -1,14 +1,26 @@
 <template>
   <div class="tabs-bar-container tabs-bar">
-    <div class="tabs-bar-box">
-      <div class="tabs-bar-list">
+    <div class="tabs-bar__box">
+      <div class="tabs-bar__list">
         <div
-          v-for="(item, index) in barsList"
-          :key="index"
-          class="tabs-bar-item"
-          :class="{ 'tabs-bar-item-active': item.fullPath === activeTabFullPath }"
+          v-for="item in barsList"
+          :key="item.fullPath"
+          class="tabs-bar__item"
+          :class="{ 'tabs-bar__item-active': isTabActive(item) }"
+          @click="toggleBar(item)"
         >
-          <div class="title">{{ item.title }}</div>
+          <div
+            class="tabs-bar__item-dot"
+            :class="{ 'tabs-bar__item-dot-active': isTabActive(item) }"
+          ></div>
+          <div class="tabs-bar__item-title">{{ item.title }}</div>
+          <plt-icon
+            v-if="item.closable !== false"
+            class="tabs-bar__item-close"
+            v-show="isTabActive(item)"
+            icon="icon-plt-danchuang-guanbi_Light"
+            @click.stop="closeBar(item)"
+          ></plt-icon>
         </div>
       </div>
     </div>
@@ -20,7 +32,7 @@ import { tabsBar } from '@admin-vue/views/layout/tabs-bar/tabs-bar';
 defineOptions({
   name: 'AppTabsBar',
 });
-const { barsList, activeTabFullPath } = tabsBar();
+const { isTabActive, barsList, toggleBar, closeBar } = tabsBar();
 </script>
 
 <style lang="scss" scoped>
@@ -31,7 +43,7 @@ const { barsList, activeTabFullPath } = tabsBar();
   box-sizing: border-box;
   margin-top: var(--plt-basic-margin-s);
   height: 36px;
-  &-box {
+  &__box {
     flex: 1;
     overflow: hidden;
     transform: translateX(0px);
@@ -47,13 +59,13 @@ const { barsList, activeTabFullPath } = tabsBar();
       border-bottom: 1px solid var(--plt-basic-border-color-main);
     }
   }
-  &-list {
+  &__list {
     transition: all 0.3s;
     display: flex;
     flex-wrap: nowrap;
     height: 100%;
   }
-  &-item {
+  &__item {
     position: relative;
     display: flex;
     align-items: center;
@@ -63,6 +75,24 @@ const { barsList, activeTabFullPath } = tabsBar();
     border-radius: 4px 4px 0 0;
     padding: 0 32px;
     cursor: pointer;
+    &-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--plt-basic-color-primary-16);
+
+      position: absolute;
+      left: 12px;
+
+      opacity: 0;
+    }
+    &-dot-active {
+      opacity: 1;
+    }
+    &-close {
+      position: absolute;
+      right: 8px;
+    }
 
     &:hover {
       color: var(--plt-basic-color-primary-16);
@@ -73,8 +103,12 @@ const { barsList, activeTabFullPath } = tabsBar();
         rgb(var(--plt-basic-bg-color-rgb))
       );
     }
+
+    &:hover &-close {
+      display: block !important;
+    }
   }
-  &-item-active {
+  &__item-active {
     color: var(--plt-basic-color-primary-16);
     border-color: var(--plt-basic-border-color-main);
     background: linear-gradient(

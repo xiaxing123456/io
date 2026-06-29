@@ -1,36 +1,47 @@
-import { useMenu } from '@admin-vue/composables/use-menu/use-menu';
 import { MenuStatus } from '@admin-vue/enums/global.enum';
-import { systemModuleAccessStore } from '@admin-vue/stores';
-import { computed, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
+import { adminAccessStore } from '@admin-vue/stores';
+import { computed } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 export const nav = () => {
-  const { navigationType, menuOptionsProps, menuDefaultActive, currentMenuList, initMenuData } =
-    useMenu();
+  const route = useRoute();
+  const router = useRouter();
+  const adminAccess = adminAccessStore();
+  const queryParams = computed(() => route?.query);
 
+  const menuDefaultActive = computed(() => {
+    const { fullPath } = route;
+    return fullPath;
+  });
+  const navigationType = computed(() => adminAccess.state.navigationType);
   const menuModelTitle = computed(() =>
     navigationType.value === MenuStatus.CompanyManagement ? '公司管理' : '个人中心'
   );
-
-  const route = useRoute();
-  const queryParams = computed(() => route?.query);
-  const systemModuleAccess = systemModuleAccessStore();
-
-  /**
-   * 初始化导航栏
-   */
-  const initNav = async () => {
-    await initMenuData({ isChangeNavigation: false });
+  const menuOptionsProps = {
+    label: 'menuName',
+    value: 'menuCode',
+    children: 'children',
+    path: 'fullUrl',
   };
+  const currentMenuList = computed(() => adminAccess.state.menuList);
 
-  onMounted(async () => {
-    await initNav();
-  });
+  /** 切换导航类型 */
+  const changeNavigationType = async () => {
+    // 1. 重新初始化菜单数据
+    const type =
+      navigationType.value === MenuStatus.CompanyManagement
+        ? MenuStatus.CompanyPerson
+        : MenuStatus.CompanyManagement;
+    await adminAccess.initMenuList(type);
+
+    // 2. 跳转首页
+    router.push('/');
+  };
 
   return {
     menuModelTitle,
     currentMenuList,
     menuOptionsProps,
     menuDefaultActive,
-    initMenuData,
+    changeNavigationType,
   };
 };
