@@ -9,7 +9,9 @@ import App from './App.vue';
 import '@admin-vue/assets/style/index.scss';
 
 // mock
-import '@admin-vue/apis/moke';
+if (import.meta.env.DEV) {
+  import('@admin-vue/apis/moke');
+}
 
 const app = createApp(App);
 

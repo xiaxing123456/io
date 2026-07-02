@@ -1,4 +1,4 @@
-import { userAccessStore } from '@admin-vue/stores';
+import { userAccessStore } from '@admin-vue/stores/modules/user-access';
 import { envVariables } from '@admin-vue/utils/env-var';
 import { createPlatformHttp } from './common/http';
 

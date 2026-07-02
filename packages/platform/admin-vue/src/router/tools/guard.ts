@@ -55,7 +55,7 @@ export const useRouteGuard = (router: Router, options?: UseRouteGuardOptions): R
       }
     } else {
       // 如果未登录设置全局的跳转地址为登录页面
-      if (['login'].includes(toRouteName)) {
+      if (!['login'].includes(toRouteName)) {
         next({ name: 'login' });
         return;
       }

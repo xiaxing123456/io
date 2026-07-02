@@ -1,4 +1,4 @@
-import type { LoadingInstance } from '@io-platform/core-ui/components/plt-loading';
+import type { LoadingInstance } from '@io-platform/core-ui/src/components/plt-loading';
 import type { Ref } from 'vue';
 
 // export enum TaskStatus {

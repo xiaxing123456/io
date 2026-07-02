@@ -32,9 +32,9 @@ export const nav = () => {
         ? MenuStatus.CompanyPerson
         : MenuStatus.CompanyManagement;
     await adminAccess.initMenuList(type);
-
+    const homeUrl = adminAccess.getMenuHomeUrl() || '/';
     // 2. 跳转首页
-    router.push('/');
+    router.push(homeUrl);
   };
 
   return {

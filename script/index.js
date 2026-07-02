@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const { geEnvFile } = require('@io-platform/dev-tools');
+const { buildCommands, handleBuildCommand } = require('./build');
 
 /** 项目根路径 */
 const rootPath = path.resolve(__dirname, '..');
@@ -45,6 +46,9 @@ const commandHandlers = {
       ),
     ];
     await Promise.all(promises);
+  },
+  'build:admin-vue': async () => {
+    await handleBuildCommand(buildCommands['build:all']);
   },
 };
 

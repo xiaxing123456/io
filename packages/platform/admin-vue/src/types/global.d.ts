@@ -4,7 +4,7 @@ declare global {
     [key: number]: any;
   };
   interface Vo<T> {
-    susccess: boolean;
+    success: boolean;
     message: string;
     data: T;
   }

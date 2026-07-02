@@ -5,6 +5,7 @@ import { generateRouter, mergeRoute } from '@admin-vue/router/tools';
 import { Router, RouteRecordRaw } from 'vue-router';
 
 export let router: Router;
+
 export const initRouter = (
   app: App,
   options?: {
@@ -14,7 +15,7 @@ export const initRouter = (
 ) => {
   const installRoutes = (options?.exRoutes && mergeRoute(routers, options.exRoutes)) || routers;
 
-  const router = generateRouter(installRoutes, {});
+  router = generateRouter(installRoutes, {});
 
   try {
     options?.callbackFn && options?.callbackFn({ router });

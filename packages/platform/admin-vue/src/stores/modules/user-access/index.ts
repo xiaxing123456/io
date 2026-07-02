@@ -6,9 +6,8 @@ import type {
 
 import { login } from '@admin-vue/apis/login';
 import { MenuStatus } from '@admin-vue/enums/global.enum';
-import { router } from '@admin-vue/router';
-import { adminAccessStore } from '@admin-vue/stores';
 import { PiniaName } from '@admin-vue/stores/index.enum';
+import { adminAccessStore } from '@admin-vue/stores/modules/admin-access';
 import { defineStore } from 'pinia';
 import { reactive, toRef } from 'vue';
 
@@ -92,9 +91,6 @@ export const userAccessStore = defineStore(
         const adminAccess = adminAccessStore();
         adminAccess.setTabBarList([]);
         adminAccess.setMenuList([]);
-
-        // 跳转到登录页
-        router.push('/login');
       },
     };
 

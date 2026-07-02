@@ -10,13 +10,11 @@
           <app-tabs-bar></app-tabs-bar>
         </div>
         <div class="main-container">
-          <div class="main-container">
-            <router-view v-slot="{ Component, route }">
-              <KeepAlive>
-                <component :is="Component" :key="route.fullPath" />
-              </KeepAlive>
-            </router-view>
-          </div>
+          <router-view v-slot="{ Component, route }">
+            <KeepAlive>
+              <component :is="Component" :key="route.fullPath" />
+            </KeepAlive>
+          </router-view>
         </div>
       </template>
     </plt-mobile-container>

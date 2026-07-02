@@ -30,4 +30,10 @@ export const managementRouters: RouteRecordRaw[] = [
     component: viewComponent.CompanyRole,
     meta: { title: '公司角色', [RouteMetaCustomizeOpsKey.Name]: customizeOps },
   },
+  {
+    path: 'power-managemement',
+    name: 'power-managemement',
+    component: viewComponent.PowerManagemement,
+    meta: { title: '权限控制', [RouteMetaCustomizeOpsKey.Name]: customizeOps },
+  },
 ];
