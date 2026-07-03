@@ -1,5 +1,5 @@
-import { PltColumn } from '../../../types/plt-grid/plt-grid';
-import { PltGridColumnField } from '../../../types/plt-grid/plt-grid.enum';
+import { PltColumn } from '../../../../types/plt-grid/plt-grid';
+import { PltGridColumnField } from '../../../../types/plt-grid/plt-grid.enum';
 
 export const useColumns = () => {
   /** 获取拖拽列配置 */

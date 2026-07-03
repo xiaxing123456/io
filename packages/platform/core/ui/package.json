@@ -26,15 +26,16 @@
     "element-plus": "^2.13.1",
     "vue": "^3.5.26",
     "vue-router": "^4.6.4",
-    "vxe-table": "4.10.3"
+    "vxe-pc-ui": "4.15.21",
+    "vxe-table": "4.19.23",
+    "xe-utils": "4.0.10"
   },
   "dependencies": {
     "@io-platform/core-common": "workspace:*",
     "@vueuse/core": "^14.1.0",
     "lodash-es": "^4.17.22",
     "sortablejs": "1.14.0",
-    "splitpanes": "^4.1.2",
-    "xe-utils": "3.5.14"
+    "splitpanes": "^4.1.2"
   },
   "devDependencies": {
     "@element-plus/icons-vue": "^2.3.2",
@@ -49,8 +50,7 @@
     "vite": "^7.3.0",
     "vue": "^3.5.26",
     "vue-router": "^4.6.4",
-    "vue-tsc": "^3.2.2",
-    "vxe-table": "4.10.3"
+    "vue-tsc": "^3.2.2"
   },
   "keywords": [],
   "author": "",

@@ -39,8 +39,9 @@
     "vue": "^3.5.26",
     "vue-i18n": "^11.2.8",
     "vue-router": "^4.6.4",
-    "vxe-table": "4.10.3",
-    "xe-utils": "3.5.14"
+    "vxe-pc-ui": "4.15.21",
+    "vxe-table": "4.19.23",
+    "xe-utils": "4.0.10"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",

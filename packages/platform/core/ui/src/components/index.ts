@@ -1,4 +1,6 @@
+import PltDialog from './plt-dialog/plt-dialog.vue';
 import PltEmpty from './plt-empty/plt-empty.vue';
+import PltGrid from './plt-grid/plt-grid.vue';
 import PltIcon from './plt-icon/plt-icon.vue';
 import pltMenu from './plt-menu/plt-menu';
 import PltMobileContainer from './plt-mobile-container/plt-mobile-container';
@@ -10,8 +12,11 @@ import PltUserAvatar from './plt-user-avatar/plt-user-avatar.vue';
 import PltVirtuallyList from './plt-virtually-list/plt-virtually-list';
 
 export type * from '../types';
+
 export {
+  PltDialog,
   PltEmpty,
+  PltGrid,
   PltIcon,
   pltMenu,
   PltMobileContainer,
@@ -33,4 +38,6 @@ export default [
   PltEmpty,
   PltSelect,
   PltTooltip,
+  PltDialog,
+  PltGrid,
 ];
