@@ -5,7 +5,7 @@ import { initRouter } from '@admin-vue/router';
 import { initStores } from '@admin-vue/stores';
 import { envVariables } from '@admin-vue/utils/env-var';
 
-import { VXETable, VxeUI } from '@admin-vue/utils/resources/vxe-table';
+import { VxeUIBase, VxeUITable } from '@admin-vue/utils/resources/vxe-table';
 import { platformUIComponents } from '@io-platform/core-ui/src';
 import ElementPlus from 'element-plus';
 
@@ -16,8 +16,8 @@ export const initApp = async (app: App) => {
 
   //  全局注册组件
   app.use(ElementPlus);
-  app.use(VXETable);
-  app.use(VxeUI);
+  app.use(VxeUITable);
+  app.use(VxeUIBase);
   [...platformUIComponents].forEach(component => {
     // 兼容setup语法 使用defineOptions导出的组件name
     app.component(component.name || component?.customOptions?.name, component);
