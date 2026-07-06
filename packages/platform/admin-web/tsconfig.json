@@ -1,0 +1,19 @@
+{
+    "extends": "@io-platform/dev-config/tsconfig/tsconfig",
+    "compilerOptions": {
+        "rootDir": "./src",
+        "outDir": "dist",
+        "paths": {
+            "@admin-web/*": ["./src/*"],
+            "@locales": ["../../../node_modules/@io-platform/core-locales/src"],
+        },
+        "types": ["vite/client", "element-plus/global"]
+    },
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.d.ts",
+        "src/**/*.tsx",
+        "src/**/*.vue",
+    ],
+    "exclude": ["node_modules"]
+}

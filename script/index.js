@@ -39,6 +39,12 @@ const commandHandlers = {
         })
       ),
       Promise.resolve().then(() =>
+        handleGeEnvFile({
+          sourcePkgName: 'engine',
+          targetPkgName: 'platform/admin-web',
+        })
+      ),
+      Promise.resolve().then(() =>
         handleGeDocEnvFile({
           sourcePkgName: 'doc-blog',
           targetPkgName: 'doc-blog',
