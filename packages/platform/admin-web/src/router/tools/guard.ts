@@ -30,7 +30,10 @@ export const useRouteGuard = (router: Router, options?: UseRouteGuardOptions): R
     }
 
     // 判断是否登录状态
-    if (userAccess.getAccessToken) {
+    if (userAccess.loginStatus) {
+      // 如果是默认首页
+      if (to.path === '/') {
+      }
     }
   };
 

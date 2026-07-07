@@ -1,5 +1,6 @@
 import type { UserAccessState } from '@admin-web/stores/modules/user-access/index.type';
 
+import { MenuStatus } from '@admin-web/enums/global.enum';
 import { PiniaName } from '@admin-web/stores/index.enum';
 import { defineStore } from 'pinia';
 import XEUtils from 'xe-utils';
@@ -10,6 +11,7 @@ export const userAccessStore = defineStore(PiniaName.UserAccess, {
       accessToken: null,
       timeStamp: 0,
       userInfo: null,
+      navigationType: MenuStatus.CompanyPerson,
     };
   },
   getters: {
@@ -19,6 +21,7 @@ export const userAccessStore = defineStore(PiniaName.UserAccess, {
     loginStatus(state) {
       return !!(state.accessToken && state.userInfo);
     },
+
     /** 路由树列表 */
     routeTreeList(state) {
       const { userInfo } = state;
@@ -26,6 +29,8 @@ export const userAccessStore = defineStore(PiniaName.UserAccess, {
       const routeList = userInfo.routeList.map(item => {
         const routeName = item.routeName;
         const obj = {
+          id: item.id,
+          parentId: item.parentId,
           title: item.menuName,
           code: item.menuCode,
           parentCode: item.parentCode,
@@ -41,6 +46,12 @@ export const userAccessStore = defineStore(PiniaName.UserAccess, {
         children: 'childList',
       });
       return rTreeList;
+    },
+
+    menuTreeList(state) {
+      XEUtils.searchTree(this.routeTreeList, item => {
+        return item.navigationType === state.navigationType;
+      });
     },
   },
   actions: {},

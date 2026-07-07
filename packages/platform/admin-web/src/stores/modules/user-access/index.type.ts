@@ -1,4 +1,5 @@
 import { UserInfoVO } from '@admin-web/apis/users/index.type';
+import { MenuStatus } from '@admin-web/enums/global.enum';
 
 export type AccessToken = null | string;
 
@@ -37,4 +38,6 @@ export interface UserAccessState {
   timeStamp: number;
   /** 用户信息 */
   userInfo: UserInfoVO | null;
+  /** 导航类型 */
+  navigationType: MenuStatus;
 }
