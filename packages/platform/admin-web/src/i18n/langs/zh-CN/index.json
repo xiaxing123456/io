@@ -1,0 +1,16 @@
+{
+  "admin-web": {
+    "global": {},
+    "message": {
+      "placeholder": {
+        "span_input": "请输入",
+        "span_select": "请选择",
+        "span_input_password": "请输入密码"
+      }
+    },
+    "login_page": {
+      "title": "用户登录",
+      "login": "登录"
+    }
+  }
+}

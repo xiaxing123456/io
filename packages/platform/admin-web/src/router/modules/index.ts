@@ -12,7 +12,7 @@ export const routers: RouteRecordRaw[] = [
     meta: {
       title: '登录',
       [RouteMetaCustomizeOpsKey.Name]: {
-        hiddenTab: true,
+        isIgnoreLogin: true,
       },
     },
   },

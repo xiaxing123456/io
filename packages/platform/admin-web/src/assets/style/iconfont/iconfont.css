@@ -1,0 +1,83 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 5196319 */
+  src: url('iconfont.woff2?t=1783933251942') format('woff2'),
+       url('iconfont.woff?t=1783933251942') format('woff'),
+       url('iconfont.ttf?t=1783933251942') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-plt-icon-time:before {
+  content: "\e638";
+}
+
+.icon-plt-icon-view:before {
+  content: "\e633";
+}
+
+.icon-plt-icon-view_off:before {
+  content: "\e634";
+}
+
+.icon-plt-icon-search:before {
+  content: "\e63c";
+}
+
+.icon-plt-icon-link:before {
+  content: "\e63e";
+}
+
+.icon-plt-icon-setting:before {
+  content: "\e63f";
+}
+
+.icon-plt-icon-upload:before {
+  content: "\e640";
+}
+
+.icon-plt-icon-lock:before {
+  content: "\e644";
+}
+
+.icon-plt-icon-user:before {
+  content: "\e64d";
+}
+
+.icon-plt-danchuang-guanbi_Light:before {
+  content: "\e68c";
+}
+
+.icon-plt-wechat:before {
+  content: "\e64f";
+}
+
+.icon-plt-caishichang-:before {
+  content: "\e62b";
+}
+
+.icon-plt-code:before {
+  content: "\e84f";
+}
+
+.icon-plt-github-alt:before {
+  content: "\e80c";
+}
+
+.icon-plt-kongjian_bold:before {
+  content: "\e850";
+}
+
+.icon-plt-vv_Light:before {
+  content: "\e751";
+}
+
+.icon-plt-rig_Light:before {
+  content: "\e752";
+}
+

@@ -5,10 +5,10 @@
   "scripts": {
     "init:platform": "node script/build-platform",
     "init:dev": "pnpm init:platform && node script/index init:dev",
-    "dev:all": "pnpm --filter @io-platform/admin-vue dev",
+    "dev:all": "pnpm --filter @io-platform/admin-web dev",
     "dev:doc-blog": "pnpm --filter doc-blog dev",
     "dev:doc-ui": "pnpm --filter doc-ui dev",
-    "build:admin-vue": "pnpm --filter @io-platform/admin-vue build",
+    "build:admin-web": "pnpm --filter @io-platform/admin-web build",
     "build:doc-blog": "pnpm --filter doc-blog build",
     "build:docs": "node script/build-all-docs"
   },

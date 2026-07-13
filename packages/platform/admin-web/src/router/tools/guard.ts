@@ -1,6 +1,7 @@
 import type { UseRouteGuardOptions } from '@admin-web/router/index.type';
 import type { NavigationGuardWithThis, Router } from 'vue-router';
 
+import { LOGIN_PAGE_NAME } from '@admin-web/router/modules/config';
 import { isIgnoreLoginPath } from '@admin-web/router/tools/common';
 import { userAccessStore } from '@admin-web/stores/modules/user-access';
 
@@ -21,6 +22,7 @@ export const useRouteGuard = (router: Router, options?: UseRouteGuardOptions): R
     const toRouteName = (to.name ?? '') as string;
     const toRoutePath = to.path;
 
+    console.log('$_beforeEachFn', toRouteName, toRoutePath);
     const userAccess = userAccessStore();
 
     // 支持不登录就可以访问地址
@@ -34,6 +36,12 @@ export const useRouteGuard = (router: Router, options?: UseRouteGuardOptions): R
       // 如果是默认首页
       if (to.path === '/') {
       }
+    }
+    // 没登录则跳转登录页
+    else {
+      next({
+        name: LOGIN_PAGE_NAME,
+      });
     }
   };
 
