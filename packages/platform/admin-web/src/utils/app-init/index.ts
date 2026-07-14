@@ -9,6 +9,13 @@ import { envVariables } from '@admin-web/utils/env-var';
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 
+// vxe-table
+import VxeUITable from 'vxe-table';
+import 'vxe-table/lib/style.css';
+
+// vxe-ui
+import VxeUIBase from 'vxe-pc-ui';
+import 'vxe-pc-ui/es/style.css';
 // 引入平台UI组件
 import { platformUIComponents } from '@io-platform/core-ui/src';
 
@@ -24,6 +31,8 @@ export const initApp = async (app: App) => {
 
   //  全局注册组件
   app.use(ElementPlus);
+  app.use(VxeUITable);
+  app.use(VxeUIBase);
   [...platformUIComponents].forEach(component => {
     // 兼容setup语法 使用defineOptions导出的组件name
     app.component(component.name || component?.customOptions?.name, component);

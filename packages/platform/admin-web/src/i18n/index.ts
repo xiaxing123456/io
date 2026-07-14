@@ -1,4 +1,5 @@
 import {
+  $t,
   setupI18n as coreSetup,
   loadLocalesMapFromDir,
   LocaleSetupOptions,
@@ -24,4 +25,8 @@ export const setupI18n = async (app: App, options: LocaleSetupOptions = {}) => {
     defaultLocale: SystemLanguage.ZhCn,
     loadMessages,
   });
+};
+
+export const t = (val: string, params: AnyObj = {}) => {
+  return $t(`admin-web.${val}`, params);
 };

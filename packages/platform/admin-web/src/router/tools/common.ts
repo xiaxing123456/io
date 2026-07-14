@@ -1,5 +1,5 @@
+import { RouteMetaCustomizeOpsKey } from '@admin-web/router/index.enum';
 import { RouteLocationNormalizedLoaded } from 'vue-router';
-import { RouteMetaCustomizeOpsKey } from '../index.enum';
 
 /**
  * # 是否是忽略登录的路由

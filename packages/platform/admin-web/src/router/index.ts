@@ -20,3 +20,5 @@ export const initRouter = (
   app.use(router);
   return app;
 };
+
+export { router };
