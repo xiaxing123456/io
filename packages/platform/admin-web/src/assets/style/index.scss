@@ -1,5 +1,5 @@
-@import './basic.scss';
-@import './global-class.scss';
+@use './basic.scss';
+@use './global-class.scss';
 
-@import './iconfont/iconfont.css';
-@import './override/index.scss';
+@use './iconfont/iconfont.css';
+@use './override/index.scss';

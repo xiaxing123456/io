@@ -1,7 +1,9 @@
 import type { LoginDto } from '@admin-web/apis/users/index.type';
-import type {
+import {
+  ClearUserTabType,
   UserAccessState,
   UserMenuOpt,
+  UserTabsOpt,
 } from '@admin-web/stores/modules/user-access/index.type';
 
 import { currentUserMenu } from '@admin-web/apis/sys-menu';
@@ -10,6 +12,7 @@ import { MenuStatus } from '@admin-web/enums/global.enum';
 import { PiniaName } from '@admin-web/stores/index.enum';
 import { updateTreeNodeForTree } from '@io-platform/core-common';
 import { defineStore } from 'pinia';
+import XEUtils from 'xe-utils';
 
 export const userAccessStore = defineStore(PiniaName.UserAccess, {
   state: (): UserAccessState => {
@@ -20,6 +23,8 @@ export const userAccessStore = defineStore(PiniaName.UserAccess, {
       userInfo: null,
       navigationType: MenuStatus.CompanyPerson,
       menuTreeList: [],
+      activeUserTab: '',
+      userTabs: [],
     };
   },
   getters: {
@@ -40,8 +45,17 @@ export const userAccessStore = defineStore(PiniaName.UserAccess, {
       if (rest) return rest;
       return null;
     },
+    /** 菜单名称映射 */
+    menuNameMaps() {
+      const codeMaps: Record<string, UserMenuOpt> = {};
+      XEUtils.eachTree(this.menuTreeList, item => {
+        codeMaps[item.name] = item;
+      });
+      return codeMaps;
+    },
   },
   actions: {
+    // ============= 用户服务控制 ============
     /** 初始化服务 */
     async initServer() {
       if (this.loginStatus) {
@@ -62,6 +76,7 @@ export const userAccessStore = defineStore(PiniaName.UserAccess, {
         logger.log(error);
       }
     },
+    // ============= token控制 ============
     /** 设置token 信息 */
     setToken(data: { accessToken: string }) {
       this.accessToken = data.accessToken;
@@ -77,6 +92,8 @@ export const userAccessStore = defineStore(PiniaName.UserAccess, {
     clearToken() {
       this.accessToken = null;
     },
+
+    // ============= 菜单控制 =================
     /** 更新用户菜单 */
     async updateUserMenu() {
       try {
@@ -104,6 +121,51 @@ export const userAccessStore = defineStore(PiniaName.UserAccess, {
         this.navigationType === MenuStatus.CompanyPerson
           ? MenuStatus.CompanyManagement
           : MenuStatus.CompanyPerson;
+    },
+
+    // ================== 页签控制 ===================
+    /** 添加用户页签 */
+    addUserTab(tab: UserTabsOpt): void {
+      if (!this.userTabs.some(item => item.name === tab.name)) {
+        this.userTabs.push(tab);
+      }
+      this.activeUserTab = tab.name;
+    },
+
+    /** 关闭用户页签 如果关闭的是当前激活页签则返回新激活页签 否则返回null */
+    removeUserTab(tab: { name: string }): UserTabsOpt | null {
+      const index = this.userTabs.findIndex(item => item.name === tab.name);
+      if (index > -1) {
+        if (tab.name === this.activeUserTab) {
+          const nextItem = this.userTabs[index + 1] || this.userTabs[index - 1];
+          if (nextItem) {
+            this.activeUserTab = nextItem.name;
+            this.userTabs.splice(index, 1);
+            return nextItem;
+          }
+        }
+        this.userTabs.splice(index, 1);
+      }
+      return null;
+    },
+    /** 清除用户页签 */
+    clearUserTab(type: ClearUserTabType) {
+      const index = this.userTabs.findIndex(item => item.name === this.activeUserTab);
+      switch (type) {
+        case ClearUserTabType.CloseOther:
+          this.userTabs = this.userTabs.filter(item => item.name === this.activeUserTab);
+          break;
+        case ClearUserTabType.CloseLeft:
+          this.userTabs = this.userTabs.slice(index);
+          break;
+        case ClearUserTabType.CloseRight:
+          this.userTabs = this.userTabs.slice(0, index + 1);
+          break;
+        case ClearUserTabType.CloseAll:
+          this.activeUserTab = '';
+          this.userTabs = [];
+          break;
+      }
     },
 
     /** 清除信息 */

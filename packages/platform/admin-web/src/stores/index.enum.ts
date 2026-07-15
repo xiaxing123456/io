@@ -5,5 +5,5 @@ export enum PiniaName {
   /** 用户模块 */
   UserAccess = 'user-access',
   /** 系统模块权限模块 */
-  AdminAccess = 'admin-access',
+  AppAccess = 'app-access',
 }

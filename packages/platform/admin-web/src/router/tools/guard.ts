@@ -2,6 +2,7 @@ import type { UseRouteGuardOptions } from '@admin-web/router/index.type';
 import type {
   NavigationGuardNext,
   NavigationGuardWithThis,
+  NavigationHookAfter,
   RouteLocationNormalizedGeneric,
   RouteLocationNormalizedLoadedGeneric,
   Router,
@@ -70,10 +71,16 @@ export const useRouteGuard = (router: Router, options?: UseRouteGuardOptions): R
     // 判断是否登录状态
     if (userAccess.loginStatus && to.name === LOGIN_PAGE_NAME) {
       next('/');
+      return;
     } else if (userAccess.loginStatus) {
       handleRoutePermission(to, from, next);
       return;
+    } else if (!userAccess.loginStatus && to.name !== LOGIN_PAGE_NAME) {
+      next({
+        name: LOGIN_PAGE_NAME,
+      });
     }
+    next();
 
     // // 登录状态检测
     // try {
@@ -88,5 +95,21 @@ export const useRouteGuard = (router: Router, options?: UseRouteGuardOptions): R
 
   // 注册路由前置守卫
   router?.beforeEach(options?.beforeEachFn || $_beforeEachFn);
+
+  // 默认后置钩子
+  const $_afterEach: NavigationHookAfter = to => {
+    const userAccess = userAccessStore();
+    // 更新页签
+    if (userAccess.loginStatus) {
+      userAccess.addUserTab({
+        name: to.name as string,
+        routeName: to.name as string,
+        path: to.fullPath,
+        query: to.query,
+        params: to.params,
+      });
+    }
+  };
+  router?.afterEach(options?.afterEach || $_afterEach);
   return router;
 };
